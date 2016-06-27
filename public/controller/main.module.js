@@ -18,15 +18,15 @@ angular.module('mainApp', [
                 templateUrl: 'route1.html',
                 controller: 'mainController'
             })
-            .state('route1_list', {
-                url: '/route1/list',
-                templateUrl: 'route1.list.html',
-                controller: 'mainController'
-            })
+                .state('route1.list', {
+                    url: '/list',
+                    templateUrl: 'route1.list.html',
+                    controller: 'mainController'
+                })
 
             .state('route2', {
                 url: '/route2',
-                templateUrl: 'route1.html',
+                templateUrl: 'route2.html',
                 controller: 'mainController'
             })
             .state('route2_list', {

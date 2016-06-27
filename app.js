@@ -10,6 +10,7 @@ app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'src/img')));
+app.use(express.static(path.join(__dirname, 'views')));
 
 app.get('/', function(req,res){
     res.render('index');
