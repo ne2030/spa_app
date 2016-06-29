@@ -6,6 +6,9 @@
         display: inline-block;
         margin-left: 20px;
     }
+    li {
+        list-style: inside;
+    }
 </style>
 
 <div class="well" ng-init="getRoute2()">
@@ -18,5 +21,4 @@
     <ul>
       <li ng-repeat="thing in things track by $index">{{thing}}</li>
     </ul>
-
 </div>

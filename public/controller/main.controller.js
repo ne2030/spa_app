@@ -24,6 +24,7 @@ function mainController($scope) {
                 things.push(add);}
         })();
         var counting = things.length;
+        this.addings = "";
 
         $scope.things = things;
         $scope.results = counting;
