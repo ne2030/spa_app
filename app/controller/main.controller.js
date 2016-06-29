@@ -1,32 +1,35 @@
+(function(){
+    'use strict';
 
-angular.module('subController', [])
-    .controller('mainController', mainController);
+    angular.module('subController', [])
+        .controller('mainController', mainController);
 
-/** @ngInject */
-function mainController($scope) {
+    /** @ngInject */
+    function mainController($scope) {
 
-    var array = ['a', 'set', 'of', 'item'];
-    var things = ['a', 'set', 'of', 'things'];
+        var array = ['a', 'set', 'of', 'item'];
+        var things = ['a', 'set', 'of', 'things'];
 
-    $scope.getRoute1 = function() {
+        $scope.getRoute1 = function() {
 
-        var counting = array.length;
-        $scope.items = array;
-        $scope.results = counting;
+            var counting = array.length;
+            $scope.items = array;
+            $scope.results = counting;
 
-    };
+        };
 
-    $scope.getRoute2 = function() {
+        $scope.getRoute2 = function() {
 
-        var add = this.addings;
-        (function(){
-            if (add){
-                things.push(add);}
-        })();
-        var counting = things.length;
-        this.addings = "";
+            var add = this.addings;
+            (function(){
+                if (add){
+                    things.push(add);}
+            })();
+            var counting = things.length;
+            this.addings = "";
 
-        $scope.things = things;
-        $scope.results = counting;
-    };
-}
+            $scope.things = things;
+            $scope.results = counting;
+        };
+    }
+})();
