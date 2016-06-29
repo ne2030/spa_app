@@ -1,10 +1,22 @@
-<div ng-init="getRoute2()">
-    <h3> List of the route2 Items </h3>
-    <form ng-submit="insert()">
+<style>
+    .formbox {
+        display: inline-block;
+    }
+    .ctn {
+        display: inline-block;
+        margin-left: 20px;
+    }
+</style>
+
+<div class="well" ng-init="getRoute2()">
+    <h3>List of Route 2 Things</h3>
+    <form class="formbox" method="post" ng-submit="getRoute2()">
         <input type="text" ng-model="addings" placeholder="내용을 입력하세요"/>
-        <button> 추가하기 </button>
+        <button class="btn btn-primary btn-xs"> 입력하기 </button>
     </form>
+    <div class="ctn"> Total Count : {{results}} </div>
     <ul>
-        <li ng-repeat="item in items"> {{item}} </li>
+      <li ng-repeat="thing in things track by $index">{{thing}}</li>
     </ul>
+
 </div>
