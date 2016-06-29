@@ -5,8 +5,11 @@ angular.module('subController', [])
 /** @ngInject */
 function mainController($scope) {
 
+    var array = ['a', 'set', 'of', 'item'];
+    var things = ['a', 'set', 'of', 'things'];
+
     $scope.getRoute1 = function() {
-        var array = ['a', 'set', 'of', 'item'];
+
         var counting = array.length;
         $scope.items = array;
         $scope.results = counting;
@@ -14,11 +17,15 @@ function mainController($scope) {
     };
 
     $scope.getRoute2 = function() {
-        var things = ['a', 'set', 'of', 'things'];
+
         var add = this.addings;
-        $scope.insert = function(){
-            things.push(add);
-        };
+        (function(){
+            if (add){
+                things.push(add);}
+        })();
+        var counting = things.length;
+
         $scope.things = things;
+        $scope.results = counting;
     };
 }

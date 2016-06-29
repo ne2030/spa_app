@@ -1,7 +1,12 @@
-<div>
-    <h1> Route1 </h1>
+<style>
+    .list1 {
+        margin-top: 50px;
+        padding-left: 15px;
+    }
+</style>
+<section id="route1">
+    <h1 class="title">Route 1</h1>
     <hr/>
-    <a ui-sref=".list">Show List </a>
-    <div> {{results}} </div>
-    <div ui-view> </div>
-</div>
+    <a ui-sref=".list">Show List</a>
+    <div class="list1" ui-view></div>
+</section>
