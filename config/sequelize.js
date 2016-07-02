@@ -45,6 +45,7 @@ sequelize
 
 var Route1 = require('../app/models/Route1')(sequelize);
 var Route2 = require('../app/models/Route2')(sequelize);
+var Chat = require('../app/models/Chat')(sequelize);
 
 // assign the sequelize variables to the db object and returning the db.
 module.exports = _.extend({

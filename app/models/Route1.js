@@ -18,9 +18,6 @@
                 type: Sequelize.STRING(255),
                 allowNull: false
             },
-            visitedAt: {
-                type: Sequelize.DATE
-            }
         }, {
             paranoid: true
         });

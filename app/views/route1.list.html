@@ -10,8 +10,22 @@
 
 <div class="well" ng-init="getRoute1()">
     <h3>List of Route 1 Items</h3>
-    <ul>
-      <li ng-repeat="item in items">{{item}}</li>
-    </ul>
-    <p> Total Count : {{results}} </p>
+    <p> Total Count : {{count}} </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> 이름 </th>
+                <th> 내용 </th>
+                <th> 생성 </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in items">
+                <td> {{item.name}} </td>
+                <td> {{item.content}} </td>
+                <td> {{item.createdAt}} </td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>

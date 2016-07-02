@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <title>Main page</title>
 
@@ -17,30 +18,41 @@
 <body>
 
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a class="brand" ui-sref="main">Quick Start</a></li>
-        <li><a ui-sref="route1">Route 1</a></li>
-        <li><a ui-sref="route2">Route 2</a></li>
-      </ul>
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a class="brand" ui-sref="main">Quick Start</a></li>
+                <li><a ui-sref="route1">Route 1</a></li>
+                <li><a ui-sref="route2">Route 2</a></li>
+                <li><a ui-sref="chat">Chat</a></li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
 
 
-    <div>
-        <div ui-view></div>
-    </div>
+<div>
+    <div ui-view></div>
+</div>
 
-    <!-- angular 1.5.7 inject -->
-    <script src="bower_components/angular/angular.min.js"> </script>
-    <!-- angular ui-router inject -->
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"> </script>
+<!-- angular 1.5.7 inject -->
+<script src="bower_components/angular/angular.js"></script>
+<!-- angular ui-router inject -->
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
-    <script src="controller/main.module.js"> </script>
-    <script src="controller/main.controller.js"></script>
+<!-- angular module inject -->
+<script src="controller/modules/main.module.js"></script>
+<script src="controller/modules/route.module.js"></script>
 
+<!-- angular api inject -->
+<!--<script scr="controller/api/chat.server.controller.js"></script>-->
+<!--<script scr="controller/api/route1.server.controller.js"></script>-->
+<!--<script scr="controller/api/route2.server.controller.js"></script>-->
+
+<!-- angular client controller -->
+<script src="controller/client/chat.client.controller.js"></script>
+<script src="controller/client/route1.client.controller.js"></script>
+<script src="controller/client/route2.client.controller.js"></script>
 
 
 </body>

@@ -12,13 +12,14 @@
 </style>
 
 <div class="well" ng-init="getRoute2()">
-    <h3>List of Route 2 Things</h3>
+    <h3> Realtime chatting service</h3>
     <form class="formbox" method="post" ng-submit="getRoute2()">
-        <input type="text" ng-model="addings" placeholder="내용을 입력하세요"/>
+        <input type="text" ng-model="name" placeholder="이름"/>
+        <input type="text" ng-model="chat" placeholder="메세지"/>
         <button class="btn btn-primary btn-xs"> 입력하기 </button>
     </form>
     <div class="ctn"> Total Count : {{results}} </div>
     <ul>
-      <li ng-repeat="thing in things track by $index">{{thing}}</li>
+      <li ng-repeat="thing in things track by $index">{{name}}: {{chat}}</li>
     </ul>
 </div>

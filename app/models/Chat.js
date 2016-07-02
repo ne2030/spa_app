@@ -3,13 +3,13 @@
 
     /**
      *
-     * Route 2
+     * Chat
      */
 
     var Sequelize = require('sequelize');
 
     module.exports = function(sequelize) {
-        var route2 = sequelize.define('Route2', {
+        var chat = sequelize.define('Chat', {
             name: {
                 type: Sequelize.STRING(10),
                 allowNull: true
@@ -17,11 +17,11 @@
             content: {
                 type: Sequelize.STRING(255),
                 allowNull: false
-            },
+            }
         }, {
             paranoid: true
         });
-        return route2;
+        return chat;
     };
 
 })();
