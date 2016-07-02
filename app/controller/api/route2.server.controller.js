@@ -1,6 +1,5 @@
 
     var _ = require('lodash'),
-        async = require('async'),
         db = require('../../../config/sequelize'),
         Route2 = db.Route2;
 
@@ -12,14 +11,15 @@
     */
     module.exports.getRoute2 = function (req, res, next){
         Route2.findAndCountAll({
-            order: 'id asc'
+            attributes: ['name', 'content', 'createdAt']
         }).then(function(result){
-            var items = result.rows;
-        })
-        .then(function(result){
+            result = {
+                count: result.count,
+                items: result.rows
+            };
             res.send(result);
-            }, function(err) { console.log(err);
-        });
+        })
+        .catch(next);
 
     };
 
@@ -29,14 +29,15 @@
     *  @param res
     *  @param next
     */
-    module.exports.createItem = function (req, res, next){
-        var name = req.body.name;
-        var chat = req.body.chat;
-
-        Route2.create({
-            name: name,
-            chat: chat
-        }).then(function(_chat){
-            res.send(_chat);
-        }).catch(next);
+    module.exports.makeItem = function (req, res, next){
+        // var name = req.newChat.name;
+        // var chat = req.body.chat;
+        // console.log(name);
+        // Route2.create({
+        //     name: name,
+        //     chat: chat
+        // }).then(function(_chat){
+        //     res.send(_chat);
+        // }).catch(next);
+        res.send('<h1> hi </h1>');
     };

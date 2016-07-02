@@ -4,15 +4,16 @@
   "description": "* Node.js로 구현한 SPA(single page application) project 미들웨어 Express 4.13.1 을 사용중. Database 연동 모듈로 mysql 2.10.2 을 사용중. ORM 연동 모듈로 sequelize 3.23.2 을 사용중.",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.14.0",
-    "glob": "^7.0.5",
-    "consolidate": "^0.14.1",
     "async": "^2.0.0-rc.6",
-    "mysql": "^2.11.1",
+    "consolidate": "^0.14.1",
+    "express": "^4.14.0",
+    "fs": "^0.0.2",
+    "glob": "^7.0.5",
     "lodash": "^4.13.1",
+    "mysql": "^2.11.1",
+    "path": "^0.12.7",
     "sequelize": "^3.23.4",
-    "swig": "^1.4.2",
-    "fs": "^0.0.2"
+    "swig": "^1.4.2"
   },
   "devDependencies": {},
   "scripts": {

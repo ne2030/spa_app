@@ -8,7 +8,7 @@
         router.route('/api/route1').get(controller1.getRoute1);
         router.route('/api/route2')
             .get(controller2.getRoute2)
-            .post(controller2.createItem);
+            .post(controller2.makeItem);
         
         return router;
     };

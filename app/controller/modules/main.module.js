@@ -1,6 +1,7 @@
 
     angular.module('myapp', [
         "ui.router",
+        "ngAnimate",
         "toastr",
 
         "Route1Controller",

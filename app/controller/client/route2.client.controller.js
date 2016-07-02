@@ -12,20 +12,22 @@
 
             $http.get(endPoint + '/api/route2').then(function(result){
                 var data = result.data;
-                $scope.count = result.count;
+                $scope.count = data.count;
                 $scope.items = data.items;
             });
         };
 
         $scope.createItem = function() {
-
-            var params = { name: this.name, chat: this.chat };
-            $http.post(endPoint + '/api/route2', {params: params}).then(function(result){
-                $scope.getRoute2();
-                toastr.success('아이템이 추가되었습니다.', 'Success');
-            }, function(err) {
-                toastr.error(err.data.message, 'Error');
-            });
+            console.log(this.name);
+            var newChat = { name: this.name, chat: this.chat };
+            // $http.post(endPoint + '/api/route2', {newChat: newChat}).then(function(result){
+            //     $scope.getRoute2();
+            //     this.name = "";
+            //     this.chat = "";
+            //     toastr.success('아이템이 추가되었습니다.', 'Success');
+            // }, function(err) {
+            //     toastr.error(err.data.message, 'Error');
+            // });
         };
     }
 

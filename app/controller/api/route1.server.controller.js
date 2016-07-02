@@ -20,7 +20,6 @@
                 items: result.rows
             };
             res.send(result);
-            console.log(result);
         }).catch(function(err) {
             console.log('Error: ' + err);
         });

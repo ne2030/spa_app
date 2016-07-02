@@ -3,6 +3,7 @@
 var _ = require('lodash'),
     async = require('async'),
     db = require('../../../config/sequelize'),
+    util = require('../../../config/util'),
     Chat = db.Chat;
 
 /**

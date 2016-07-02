@@ -17,6 +17,7 @@
   "dependencies": {
     "angular-ui-router": "^0.3.1",
     "angular": "1.5.7",
-    "angular-toastr": "^1.7.0"
+    "angular-toastr": "^1.7.0",
+    "angular-animate": "^1.5.7"
   }
 }

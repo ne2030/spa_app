@@ -7,7 +7,6 @@
         path = require('path'),
         async = require('async'),
         swig = require('swig'),
-        Sequelize = require('sequelize'),
         consolidate = require('consolidate');
 
     var app = express();
