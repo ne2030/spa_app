@@ -23,7 +23,7 @@
             <tr ng-repeat="item in items">
                 <td> {{item.name}} </td>
                 <td> {{item.content}} </td>
-                <td> {{item.createdAt}} </td>
+                <td> {{item.createdAt | date: 'yyyy-MM-dd'}} </td>
             </tr>
         </tbody>
     </table>

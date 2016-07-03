@@ -1,12 +1,19 @@
+<style>
+    .firstdata {
+        width: 80px;
+    }
+
+</style>
+
 <section id="chat" ng-init="getChat()">
-    <h3> Chat </h3>
-    <form ng-submit="createChat()" method="post">
-        이름: <input type="text" ng-model="name" placeholder="이름"/>
-        내용: <input type="text" ng-model="content" placeholder="내용"/>
-        <button class="btn btn-primary btn-xs"> 찾기 </button>
+    <h3 style="margin-left:20px;"> Chat </h3>
+    <form class="form-inline" ng-submit="createChat()" method="post">
+        <input style="margin-left:20px; width: 70px;" class="inputbox form-control" type="text" ng-model="name" placeholder="이름"/>
+        <input class="inputbox form-control" type="text" ng-model="content" placeholder="내용"/>
+        <button class="btn btn-primary btn-sm"> 보내기 </button>
     </form>
 
-    <uib-pagination total-items="totalCnt" ng-model="page" max-size="5" ng-change="getTrucks()" items-per-page="20"></uib-pagination>
+    <uib-pagination style="margin-left:20px;" total-items="totalCnt" ng-model="page" max-size="5" ng-change="getChat()" items-per-page="20"></uib-pagination>
 
     <div class="horizontal-scroll">
         <table class="table">
@@ -20,11 +27,11 @@
             </thead>
             <tbody ng-repeat="chat in chats">
                 <tr>
-                    <td> {{chat.id}} </td>
+                    <td class="firstdata"> {{chat.id}} </td>
                     <td> {{chat.name}} </td>
                     <td> {{chat.content}} </td>
-                    <td> {{chat.createdAt}} </td>
-                    <td> <a class="btn btn-danger btn-xs" href="/api/chat/{{chat.id}}"> delete </a> </td>
+                    <td> {{chat.createdAt | date: 'yyyy-MM-dd'}} </td>
+                    <td> <button class="btn btn-danger btn-xs" ng-click="deleteChat(chat)"> delete </button> </td>
                 </tr>
             </tbody>
         </table>

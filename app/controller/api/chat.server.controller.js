@@ -23,7 +23,7 @@ module.exports.getChat = function(req, res, next) {
             Chat.findAndCountAll({
                 offset: page,
                 limit: size,
-                order: 'id asc',
+                order: 'id desc',
             }).then(function(result) {
                 var paginator = util.pagenation({
                     req: req,
@@ -46,20 +46,19 @@ module.exports.getChat = function(req, res, next) {
 };
 
 /**
-* GET: /api/chat/:id
+* DELETE: /api/chat/:chatId
 * @param req
 * @param res
 * @param next
 */
 module.exports.deleteChat = function (req, res, next) {
-    chatId = req.params.id;
+    var chatId = req.params.chatId;
     Chat.destroy({
         where: {
             id: chatId
         }
     }).then(function(){
         res.send({});
-        res.redirect('/chat');
     }).catch(next);
 };
 
@@ -70,8 +69,8 @@ module.exports.deleteChat = function (req, res, next) {
 * @param next
 */
 module.exports.createChat = function (req, res, next) {
-    var name = req.body.name;
-    var content = req.body.content;
+    var name = req.body.params.name;
+    var content = req.body.params.content;
     Chat.create({
         name: name,
         content: content,

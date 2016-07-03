@@ -8,8 +8,8 @@
             .get(controller.getChat)
             .post(controller.createChat);
         router.route('/api/chat/:chatId')
-            .get(controller.deleteChat);
-        
+            .delete(controller.deleteChat);
+
         return router;
     };
 })();

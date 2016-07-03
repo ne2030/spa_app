@@ -11,7 +11,7 @@
 
         $scope.getChat = function(){
             var page = this.page || 1;
-            var params = {page: (page - 1) * 20, name: this.name};
+            var params = {page: (page - 1) * 20};
             $http.get(endPoint + '/api/chat', {params: params}).then(function(result){
                 var data = result.data;
                 $scope.totalCnt = data.count;
@@ -21,14 +21,15 @@
             });
         };
 
-        // $scope.deleteChat = function(chatId){
-        //     $http.delete(endPoint + '/api/chat/' + chatId, {chatId: chatId}).then(function(result){
-        //         $scope.getChat();
-        //         toastr.success('아이템이 삭제되었습니다.', 'Success');
-        //     }, function(err) {
-        //         toastr.error(err.data.message, 'Error');
-        //     });
-        // };
+        $scope.deleteChat = function(chat){
+            var chatId = chat.id;
+            $http.delete(endPoint + '/api/chat/' + chatId).then(function(result){
+                $scope.getChat();
+                toastr.success('아이템이 삭제되었습니다.', 'Success');
+            }, function(err) {
+                toastr.error(err.data.message, 'Error');
+            });
+        };
 
         $scope.createChat = function(){
             var name = this.name;
@@ -36,8 +37,8 @@
             var params = {name: name, content: content};
             $http.post(endPoint + '/api/chat', {params: params}).then(function(result){
                 $scope.getChat();
-                this.name = "";
-                this.content = "";
+                $scope.name = "";
+                $scope.content = "";
             }, function(err) {
                 toastr.error(err.data.message, 'Error');
             });

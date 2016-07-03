@@ -1,8 +1,10 @@
 
     angular.module('myapp', [
         "ui.router",
+        "ui.bootstrap",
         "ngAnimate",
         "toastr",
+
 
         "Route1Controller",
         "Route2Controller",

@@ -17,10 +17,10 @@ function route2Controller($scope, endPoint, $http, toastr) {
         var newChat = { name: this.name, chat: this.chat };
         $http.post(endPoint + '/api/route2', {newChat: newChat}).then(function(result){
             $scope.getRoute2();
-            this.name = "";
-            this.chat = "";
+            $scope.name = "";
+            $scope.chat = "";
             toastr.success('아이템이 추가되었습니다.', 'Success');
-        }, function(err) {
+        }, function() {
             toastr.error('실패했습니다', 'Error');
         });
     };
