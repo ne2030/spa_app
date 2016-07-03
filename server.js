@@ -6,6 +6,7 @@
     var express = require('express'),
         path = require('path'),
         async = require('async'),
+        bodyParser = require('body-parser'),
         swig = require('swig'),
         consolidate = require('consolidate');
 
@@ -20,6 +21,7 @@
     app.set('views', __dirname + './app/views');
 
     // file middleware
+    app.use(bodyParser.json());
     app.use(express.static(path.join(__dirname, './public')));
     app.use(express.static(path.join(__dirname, './app')));
     app.use(express.static(path.join(__dirname, './app/views')));

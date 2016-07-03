@@ -46,20 +46,20 @@ module.exports.getChat = function(req, res, next) {
 };
 
 /**
-* DELETE: /api/chat/:id
+* GET: /api/chat/:id
 * @param req
 * @param res
 * @param next
 */
 module.exports.deleteChat = function (req, res, next) {
-    // TODO: 채팅 삭제
-    var chatId = req.body.chatId;
+    chatId = req.params.id;
     Chat.destroy({
         where: {
             id: chatId
         }
     }).then(function(){
         res.send({});
+        res.redirect('/chat');
     }).catch(next);
 };
 

@@ -11,7 +11,8 @@
     */
     module.exports.getRoute2 = function (req, res, next){
         Route2.findAndCountAll({
-            attributes: ['name', 'content', 'createdAt']
+            attributes: ['name', 'content', 'createdAt'],
+            order: 'id desc'
         }).then(function(result){
             result = {
                 count: result.count,
@@ -30,14 +31,12 @@
     *  @param next
     */
     module.exports.makeItem = function (req, res, next){
-        // var name = req.newChat.name;
-        // var chat = req.body.chat;
-        // console.log(name);
-        // Route2.create({
-        //     name: name,
-        //     chat: chat
-        // }).then(function(_chat){
-        //     res.send(_chat);
-        // }).catch(next);
-        res.send('<h1> hi </h1>');
+        var name = req.body.newChat.name;
+        var chat = req.body.newChat.chat;
+        Route2.create({
+            name: name,
+            content: chat
+        }).then(function(_chat){
+            res.send(_chat);
+        }).catch(next);
     };
