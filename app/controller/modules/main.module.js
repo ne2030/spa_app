@@ -11,7 +11,7 @@
         "ChatController",
         "route"
     ])
-    .constant('endPoint', 'http://localhost:8080')
+    .constant('endPoint', 'http://eleclion.asia')
     .config(routeConfig);
 
     function routeConfig($urlRouterProvider) {

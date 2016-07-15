@@ -23,8 +23,10 @@
     // file middleware
     app.use(bodyParser.json());
     app.use(express.static(path.join(__dirname, './public')));
+    app.use(express.static(path.join(__dirname, './bower_components')));
     app.use(express.static(path.join(__dirname, './app')));
     app.use(express.static(path.join(__dirname, './app/views')));
+
 
     // express
 
@@ -53,7 +55,7 @@
     //     });
     // }();
 
-    app.listen(8080, function() {
+    app.listen(80, function() {
         console.log('server is running at localhost with port 8080');
     });
 
