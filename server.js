@@ -55,8 +55,8 @@
     //     });
     // }();
 
-    app.listen(80, function() {
-        console.log('server is running at 52.79.125.6 with port 80');
+    app.listen(8080, function() {
+        console.log('server is running at localhost:8080');
     });
 
 })();
