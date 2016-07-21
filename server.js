@@ -8,7 +8,8 @@
         async = require('async'),
         bodyParser = require('body-parser'),
         swig = require('swig'),
-        consolidate = require('consolidate');
+        consolidate = require('consolidate'),
+        CORS = require('cors');
 
     var app = express();
 
@@ -22,6 +23,9 @@
 
     // file middleware
     app.use(bodyParser.json());
+    app.use(CORS(corsOptions));
+
+    //express static
     app.use(express.static(path.join(__dirname, './public')));
     app.use(express.static(path.join(__dirname, './bower_components')));
     app.use(express.static(path.join(__dirname, './app')));
