@@ -34,11 +34,14 @@
         $scope.createChat = function(){
             var name = this.name;
             var content = this.content;
-            var params = {name: name, content: content};
-            $http.post(endPoint + '/api/chat', {params: params}).then(function(result){
-                $scope.getChat();
-                $scope.name = "";
-                $scope.content = "";
+            $http.post(endPoint + '/api/chat', {name: name, content: content}).then(function(result){
+                if (result.data.msg){
+                    toastr.error(result.data.msg, 'Error');
+                } else {
+                    $scope.getChat();
+                    $scope.name = "";
+                    $scope.content = "";
+                }
             }, function(err) {
                 toastr.error(err.data.message, 'Error');
             });

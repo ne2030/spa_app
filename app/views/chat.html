@@ -1,10 +1,3 @@
-<style>
-    .firstdata {
-        width: 80px;
-    }
-
-</style>
-
 <section id="chat" ng-init="getChat()">
     <h3 style="margin-left:20px;"> Chat </h3>
     <form class="form-inline" ng-submit="createChat()" method="post">
@@ -16,22 +9,21 @@
     <uib-pagination style="margin-left:20px;" total-items="totalCnt" ng-model="page" max-size="5" ng-change="getChat()" items-per-page="20"></uib-pagination>
 
     <div class="horizontal-scroll">
-        <table class="table">
+        <table class="table" id="chatbox">
             <thead>
                 <tr>
-                    <th> </th>
                     <th> 이름 </th>
                     <th> 대화 내용 </th>
                     <th> 시간 </th>
+                    <!-- <th> </th> -->
                 </tr>
             </thead>
             <tbody ng-repeat="chat in chats">
                 <tr>
-                    <td class="firstdata"> {{chat.id}} </td>
                     <td> {{chat.name}} </td>
                     <td> {{chat.content}} </td>
-                    <td> {{chat.createdAt | date: 'yyyy-MM-dd'}} </td>
-                    <td> <button class="btn btn-danger btn-xs" ng-click="deleteChat(chat)"> delete </button> </td>
+                    <td> {{chat.time}} </td>
+                    <!-- <td> <button class="btn btn-danger btn-xs" ng-click="deleteChat(chat)"> del </button> </td> -->
                 </tr>
             </tbody>
         </table>

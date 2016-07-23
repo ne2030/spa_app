@@ -2,14 +2,13 @@
     'use strict';
 
     var async = require('async'),
-        Sequelize = require('sequelize'),
         _ = require('lodash');
 
 
     module.exports = function(db, nextStep) {
         async.parallel([
             function(nextStep) {
-                route1(db, nextStep);
+                profile(db, nextStep);
             },
             function(nextStep) {
                 route2(db, nextStep);
@@ -26,28 +25,27 @@
         });
     };
 
-    function route1(db, nextStep) {
+    function profile(db, nextStep) {
         async.waterfall([
             function(nextStep) {
-                var route1chat = [];
+                var profileStack = [];
                 for (var i=0; i < 100; i++) {
-                    route1chat.push({
+                    profileStack.push({
                         name: 'erguono' + i,
                         content: 'test chatting' + i,
                     });
                 }
-                console.log(route1chat);
-                nextStep(null, route1chat);
+                nextStep(null, profileStack);
             },
-            function(route1chat, nextStep) {
-                db.Route1.bulkCreate(route1chat)
+            function(profileStack, nextStep) {
+                db.Profile.bulkCreate(profileStack)
                     .then(function() {
                         nextStep();
                     }).catch(nextStep);
             }
         ], function(err, result) {
             if (err) {
-                console.log('seed route1 error');
+                console.log('seed profile Stack error');
             }
         });
     }
@@ -100,5 +98,3 @@
     }
 
 })();
-
-

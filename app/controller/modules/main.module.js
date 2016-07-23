@@ -6,7 +6,7 @@
         "toastr",
 
 
-        "Route1Controller",
+        "ProfileController",
         "Route2Controller",
         "ChatController",
         "route"

@@ -1,16 +1,3 @@
-<style>
-    .formbox {
-        display: inline-block;
-    }
-    .ctn {
-        display: inline-block;
-        margin-left: 20px;
-    }
-    li {
-        list-style: none;
-    }
-</style>
-
 <div class="well" ng-init="getRoute2()">
     <h3> Realtime chatting service</h3>
     <form class="formbox form-inline" method="post" ng-submit="createItem()">
@@ -18,8 +5,8 @@
         <input class="inputbox form-control" type="text" ng-model="chat" placeholder="메세지"/>
         <button class="btn btn-primary btn-sm"> 입력하기 </button>
     </form>
-    <div class="ctn"> Total Count : {{count}} </div>
-    <ul>
-      <li ng-repeat="item in items track by $index">{{item.name}}: {{item.content}}</li>
+    <div class="r2_ctn"> Total Count : {{count}} </div>
+    <ul class="r2_list">
+      <li class="route2Item" ng-repeat="item in items track by $index">{{item.name}}: {{item.content}}</li>
     </ul>
 </div>

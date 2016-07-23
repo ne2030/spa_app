@@ -3,16 +3,16 @@
 
     /**
      *
-     * Route 1
+     * Profile
      */
 
     var Sequelize = require('sequelize');
 
     module.exports = function(sequelize) {
-        var route1 = sequelize.define('Route1', {
+        var profile = sequelize.define('Profile', {
             name: {
                 type: Sequelize.STRING(10),
-                allowNull: true
+                allowNull: false
             },
             content: {
                 type: Sequelize.STRING(255),
@@ -21,7 +21,7 @@
         }, {
             paranoid: true
         });
-        return route1;
+        return profile;
     };
 
 })();

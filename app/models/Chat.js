@@ -12,7 +12,7 @@
         var chat = sequelize.define('Chat', {
             name: {
                 type: Sequelize.STRING(10),
-                allowNull: true
+                allowNull: false
             },
             content: {
                 type: Sequelize.STRING(255),

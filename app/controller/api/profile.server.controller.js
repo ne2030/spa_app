@@ -1,18 +1,16 @@
 
-    var _ = require('lodash'),
-        async = require('async'),
-        db = require('../../../config/sequelize'),
-        Route1 = db.Route1;
+    var db = require('../../../config/sequelize'),
+        Profile = db.Profile;
 
     /**
-     *  GET: /api/route1
+     *  GET: /api/profile
      *  @param req
      *  @param res
      *  @param next
      */
-    module.exports.getRoute1 = function (req, res, next) {
+    module.exports.getProfile = function (req, res, next) {
 
-        Route1.findAndCountAll({
+        Profile.findAndCountAll({
             attributes: ['name', 'content', 'createdAt']
         }).then(function(result) {
             result = {
@@ -22,5 +20,6 @@
             res.send(result);
         }).catch(function(err) {
             console.log('Error: ' + err);
+            next();
         });
     };
