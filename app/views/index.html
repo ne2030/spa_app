@@ -6,15 +6,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="angular-toastr/dist/angular-toastr.min.css">
+    <link rel="fonts" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" />
+    <link rel="icon" href="/rsc/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/rsc/img/favicon.ico" type="image/x-icon">
 
-    <title>Spa app</title>
-
-    <style>
-        body {
-            overflow-x: hidden;
-        }
-    </style>
-
+    <title>Main page</title>
 </head>
 <body>
 
@@ -22,8 +18,8 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a class="brand" ui-sref="main">Quick Start</a></li>
-                <li><a ui-sref="route1">Route 1</a></li>
+                <li><a class="brand" ui-sref="main">Main</a></li>
+                <li><a ui-sref="profile">Profile</a></li>
                 <li><a ui-sref="route2">Route 2</a></li>
                 <li><a ui-sref="chat">Chat</a></li>
             </ul>
@@ -53,12 +49,12 @@
 
 <!-- angular api inject -->
 <!--<script scr="controller/api/chat.server.controller.js"></script>-->
-<!--<script scr="controller/api/route1.server.controller.js"></script>-->
+<!--<script scr="controller/api/profile.server.controller.js"></script>-->
 <!--<script scr="controller/api/route2.server.controller.js"></script>-->
 
 <!-- angular client controller -->
 <script src="controller/client/chat.client.controller.js"></script>
-<script src="controller/client/route1.client.controller.js"></script>
+<script src="controller/client/profile.client.controller.js"></script>
 <script src="controller/client/route2.client.controller.js"></script>
 
 

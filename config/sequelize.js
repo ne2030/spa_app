@@ -43,7 +43,7 @@ sequelize
 //     require(path.resolve(modelPath))(sequelize);
 // });
 
-var Route1 = require('../app/models/Route1')(sequelize);
+var Profile = require('../app/models/Profile')(sequelize);
 var Route2 = require('../app/models/Route2')(sequelize);
 var Chat = require('../app/models/Chat')(sequelize);
 

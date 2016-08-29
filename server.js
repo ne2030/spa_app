@@ -9,6 +9,7 @@
         bodyParser = require('body-parser'),
         swig = require('swig'),
         consolidate = require('consolidate'),
+        expressValidator = require('express-validator'),
         CORS = require('cors');
 
     var app = express();
@@ -17,17 +18,16 @@
     var config = require('./config/config'),
         sequelize = require('./config/sequelize');
 
+    //express engine
     app.engine('html', consolidate.swig);
     app.set('view engine', 'html');
     app.set('views', __dirname + './app/views');
-
-    // file middleware
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: false}));
+    app.use(bodyParser.urlencoded({ extended: false}));
+    app.use(expressValidator());
 
     // Cross Origin Resource Sharing
     var whitelist = [
-        'http://52.79.125.6',
+        'http://52.78.133.77',
         'http://localhost',
         'http://localhost:8080',
         'http://eleclion.asia'
@@ -41,15 +41,14 @@
     };
     app.use(CORS(corsOptions));
 
-    //express static
+    // express static
+
     app.use(express.static(path.join(__dirname, './public')));
     app.use(express.static(path.join(__dirname, './bower_components')));
     app.use(express.static(path.join(__dirname, './app')));
     app.use(express.static(path.join(__dirname, './app/views')));
 
-
-    // express
-
+    // express index route
     app.get('/', function(req, res) {
         res.render('index');
     });
@@ -67,16 +66,16 @@
      *   Sequelize setting
      */
 
-    // var seed = function () {
+    // (function() {
     //     sequelize.sequelize.sync({
     //         force: true
     //     }).then(function () {
     //         require('./config/seed')(sequelize);
     //     });
-    // }();
+    // })();
 
-    app.listen(80, function() {
-        console.log('server is running at 52.79.125.6 with port 80');
+    app.listen(8080, function() {
+        console.log('server is running at localhost:8080');
     });
 
 })();

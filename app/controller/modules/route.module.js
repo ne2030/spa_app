@@ -9,15 +9,15 @@
             url: '/',
             templateUrl: 'main.html'
         })
-        .state('route1', {
-            url: "/route1",
-            templateUrl: "route1.html",
-            controller: 'route1Controller'
+        .state('profile', {
+            url: "/profile",
+            templateUrl: "profile.html",
+            controller: 'profileController'
         })
-            .state('route1.list', {
-                url: "/list",
-                templateUrl: "route1.list.html",
-                controller: 'route1Controller'
+            .state('profile.stack', {
+                url: "/stack",
+                templateUrl: "profile.stack.html",
+                controller: 'profileController'
             })
 
         .state('route2', {

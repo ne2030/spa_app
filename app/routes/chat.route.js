@@ -7,8 +7,8 @@
         router.route('/api/chat')
             .get(controller.getChat)
             .post(controller.createChat);
-        router.route('/api/chat/:chatId')
-            .delete(controller.deleteChat);
+        // router.route('/api/chat/:chatId')
+        //     .delete(controller.deleteChat);
 
         return router;
     };

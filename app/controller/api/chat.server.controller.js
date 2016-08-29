@@ -14,7 +14,6 @@ var _ = require('lodash'),
 */
 // 이해 아직 덜됨 // 참조하는 db 없어서 포함 x
 module.exports.getChat = function(req, res, next) {
-
     var page = req.query.page ? parseInt(req.query.page) : 0;
     var size = 20;
 
@@ -31,9 +30,15 @@ module.exports.getChat = function(req, res, next) {
                     totalCount: result.count,
                     currentRowCount: result.rows.length
                 });
+                var chat = _.map(result.rows, function(val){
+                    var hour24 = val.createdAt.getHours();
+                    var hour12 = hour24 / 12 > 1 ? '오후 ' + hour24 % 12 : '오전 ' + hour24;
+                    var time = hour12 + ":" + val.createdAt.getMinutes();
+                    return _.extend(val.dataValues, {time: time});
+                });
                 result = _.extend({
                     count: result.count,
-                    chat: result.rows
+                    chat: chat
                 }, paginator);
 
                 nextStep(null, result);
@@ -69,8 +74,17 @@ module.exports.deleteChat = function (req, res, next) {
 * @param next
 */
 module.exports.createChat = function (req, res, next) {
-    var name = req.body.params.name;
-    var content = req.body.params.content;
+    req.checkBody('name', '이름을 입력해주세요').notEmpty();
+    req.checkBody('content', '내용을 입력해주세요').notEmpty();
+    var errors = req.validationErrors();
+    if (errors){
+        console.log(errors);
+        res.send(errors[0]);
+        return;
+    }
+
+    var name = req.body.name;
+    var content = req.body.content;
     Chat.create({
         name: name,
         content: content,
