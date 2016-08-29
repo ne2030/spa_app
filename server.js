@@ -23,22 +23,6 @@
 
     // file middleware
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: false}));
-
-    // Cross Origin Resource Sharing
-    var whitelist = [
-        'http://52.79.125.6',
-        'http://localhost',
-        'http://localhost:8080',
-        'http://eleclion.asia'
-    ];
-    var corsOptions = {
-        origin: function(origin, callback) {
-            var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
-            callback(null, originIsWhitelisted);
-        },
-        credentials: true
-    };
     app.use(CORS(corsOptions));
 
     //express static
