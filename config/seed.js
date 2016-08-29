@@ -8,9 +8,6 @@
     module.exports = function(db, nextStep) {
         async.parallel([
             function(nextStep) {
-                profile(db, nextStep);
-            },
-            function(nextStep) {
                 route2(db, nextStep);
             },
             function(nextStep) {
@@ -24,31 +21,6 @@
             }
         });
     };
-
-    function profile(db, nextStep) {
-        async.waterfall([
-            function(nextStep) {
-                var profileStack = [];
-                for (var i=0; i < 100; i++) {
-                    profileStack.push({
-                        name: 'erguono' + i,
-                        content: 'test chatting' + i,
-                    });
-                }
-                nextStep(null, profileStack);
-            },
-            function(profileStack, nextStep) {
-                db.Profile.bulkCreate(profileStack)
-                    .then(function() {
-                        nextStep();
-                    }).catch(nextStep);
-            }
-        ], function(err, result) {
-            if (err) {
-                console.log('seed profile Stack error');
-            }
-        });
-    }
 
     function route2(db, nextStep) {
 

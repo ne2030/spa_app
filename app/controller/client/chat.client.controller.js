@@ -21,30 +21,31 @@
             });
         };
 
-        $scope.deleteChat = function(chat){
-            var chatId = chat.id;
-            $http.delete(endPoint + '/api/chat/' + chatId).then(function(result){
-                $scope.getChat();
-                toastr.success('아이템이 삭제되었습니다.', 'Success');
-            }, function(err) {
-                toastr.error(err.data.message, 'Error');
-            });
-        };
+        // $scope.deleteChat = function(chat){
+        //     var chatId = chat.id;
+        //     $http.delete(endPoint + '/api/chat/' + chatId).then(function(result){
+        //         $scope.getChat();
+        //         toastr.success('아이템이 삭제되었습니다.', 'Success');
+        //     }, function(err) {
+        //         toastr.error(err.data.message, 'Error');
+        //     });
+        // };
 
         $scope.createChat = function(){
             var name = this.name;
             var content = this.content;
-            $http.post(endPoint + '/api/chat', {name: name, content: content}).then(function(result){
-                if (result.data.msg){
-                    toastr.error(result.data.msg, 'Error');
-                } else {
-                    $scope.getChat();
-                    $scope.name = "";
-                    $scope.content = "";
-                }
-            }, function(err) {
-                toastr.error(err.data.message, 'Error');
-            });
+            $http.post(endPoint + '/api/chat', {name: name, content: content}).then(
+                function(result){
+                    if (result.data.msg){
+                        toastr.error(result.data.msg, 'Error');
+                    } else {
+                        $scope.getChat();
+                        $scope.name = "";
+                        $scope.content = "";
+                    }
+                }, function(err) {
+                    toastr.error(err.data.message, 'Error');
+                });
         };
     }
 })();

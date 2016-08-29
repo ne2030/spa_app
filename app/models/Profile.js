@@ -10,14 +10,22 @@
 
     module.exports = function(sequelize) {
         var profile = sequelize.define('Profile', {
-            name: {
+            skill: {
                 type: Sequelize.STRING(10),
                 allowNull: false
             },
-            content: {
+            type: {
+                type: Sequelize.STRING(10),
+                allowNull: false
+            },
+            description: {
                 type: Sequelize.STRING(255),
                 allowNull: false
             },
+            mastery: {
+                type: Sequelize.INTEGER(3),
+                allowNull: false
+            }
         }, {
             paranoid: true
         });

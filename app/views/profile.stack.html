@@ -1,19 +1,29 @@
 <div class="well" ng-init="getProfile()">
-    <h3> Stack list</h3>
-    <p> Total Count : {{count}} </p>
+    <h4> Stack list</h4>
+
+    <form class="form-inline" ng-submit="createStack()" method="post">
+        <input class="inputbox form-control" type="text" placeholder="skill" ng-model="skill" />
+        <input class="inputbox form-control" type="text" placeholder="type" ng-model="type" />
+        <input class="inputbox form-control" type="text" placeholder="description" ng-model="description" />
+        <input class="inputbox form-control" type="text" placeholder="mastery" ng-model="mastery" />
+        <button class="btn btn-primary btn-sm"> 등록 </button>
+    </form>
+
     <table class="table">
         <thead>
             <tr>
-                <th> 이름 </th>
-                <th> 내용 </th>
-                <th> 생성 </th>
+                <th> Skill </th>
+                <th> type </th>
+                <th> Description </th>
+                <th> Mastery </th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="item in items">
-                <td> {{item.name}} </td>
-                <td> {{item.content}} </td>
-                <td> {{item.createdAt | date: 'yyyy-MM-dd'}} </td>
+                <td> {{item.skill}} </td>
+                <td> {{item.type}} </td>
+                <td> {{item.description}} </td>
+                <td id="center"> {{item.mastery}}% </td>
             </tr>
         </tbody>
     </table>

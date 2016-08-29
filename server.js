@@ -9,7 +9,8 @@
         bodyParser = require('body-parser'),
         swig = require('swig'),
         consolidate = require('consolidate'),
-        expressValidator = require('express-validator');
+        expressValidator = require('express-validator'),
+        CORS = require('cors');
 
     var app = express();
 
@@ -24,8 +25,25 @@
 
     // express middleware
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true}));
+    app.use(bodyParser.urlencoded({ extended: false}));
     app.use(expressValidator());
+
+    // Cross Origin Resource Sharing
+    var whitelist = [
+        'http://52.78.133.77',
+        'http://localhost',
+        'http://localhost:8080',
+        'http://eleclion.asia'
+    ];
+    var corsOptions = {
+        origin: function(origin, callback) {
+            var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+            callback(null, originIsWhitelisted);
+        },
+        credentials: true
+    };
+    app.use(CORS(corsOptions));
+
 
     // express static
     app.use(express.static(path.join(__dirname, './public')));

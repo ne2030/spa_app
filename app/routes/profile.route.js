@@ -5,9 +5,9 @@
 
     module.exports = function(router) {
         router.route('/api/profile')
-            .get(controller.getProfile);
-
+            .get(controller.getProfile)
+            .post(controller.createStack);
         return router;
     };
-    
+
 })();
