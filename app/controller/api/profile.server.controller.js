@@ -13,7 +13,6 @@
         Profile.findAndCountAll({
             attributes: ['skill', 'type', 'description', 'mastery']
         }).then(function(result) {
-            console.log(result);
             var stack = {
                 items: result.rows
             };

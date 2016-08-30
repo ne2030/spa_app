@@ -1,7 +1,7 @@
 <div class="well" ng-init="getProfile()">
-    <h4> Stack list</h4>
-
-    <form class="form-inline" ng-submit="createStack()" method="post">
+    <h4 style="display:inline-block;"> Stack list</h4>
+    <button class="btn btn-warning btn-xs add-stack"> 추가 </button>
+    <form class="form-inline stack-form appear" ng-submit="createStack()" method="post">
         <input class="inputbox form-control" type="text" placeholder="skill" ng-model="skill" />
         <input class="inputbox form-control" type="text" placeholder="type" ng-model="type" />
         <input class="inputbox form-control" type="text" placeholder="description" ng-model="description" />
@@ -29,3 +29,9 @@
     </table>
 
 </div>
+
+<script>
+    $('.add-stack').click(function(){
+        $('.stack-form').toggleClass('appear');
+    });
+</script>
