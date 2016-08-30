@@ -22,6 +22,9 @@
     app.engine('html', consolidate.swig);
     app.set('view engine', 'html');
     app.set('views', __dirname + './app/views');
+
+    // express middleware
+    app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false}));
     app.use(expressValidator());
 
@@ -42,7 +45,6 @@
     app.use(CORS(corsOptions));
 
     // express static
-
     app.use(express.static(path.join(__dirname, './public')));
     app.use(express.static(path.join(__dirname, './bower_components')));
     app.use(express.static(path.join(__dirname, './app')));
