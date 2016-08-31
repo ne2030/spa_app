@@ -1,11 +1,13 @@
-<section id="profile">
+<section id="profile" class="profile">
     <h1 class="title">Profile</h1>
     <hr/>
-    <a ui-sref="profile">Summary</a>
-    <a ui-sref=".stack">Show Stack</a>
+    <div class="profile_btn">
+        <a ui-sref="profile"> <button class="btn btn-primary btn-xs"> Summary </button> </a>
+        <a ui-sref=".stack"> <button class="btn btn-primary btn-xs"> Show Stack </button> </a>
+    </div>
     <div class="stack" ui-view>
-        <img draggable="false" class="profile" src="rsc/img/profile.jpg"/>
-        <div class="profile profile_list">
+        <img draggable="false" class="profile_img" src="rsc/img/profile.jpg"/>
+        <div class="profile_list">
             <p> 배경훈 </p>
             <p> <span> 출생 </span> &nbsp 1995년 8월 20일, 대한민국 (22살)</p>
             <p> <span> 학력 </span> &nbsp 성균관대학교 글로벌경영학과 재학 (14학번) </p>
@@ -13,7 +15,9 @@
             <p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 인액터스 (교육팀장) 2014 ~ 2015 </p>
             <p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 스페인 순례길 완주 (800km) 2015 </p>
             <p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 프로그래밍 입문 (웹,서버) 2015 ~ 현재 </p>
-            <p> <span> 좋아하는 말 </span> &nbsp Argue for your limitations, and sure enough they're yours. </p>
+            <p> <span> 좋아하는 말 </span> &nbsp Argue for your limitations, <br/>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                and sure enough they're yours. </p>
         </div>
 
     </div>

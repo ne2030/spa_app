@@ -1,1 +1,216 @@
-html{width:1280px}body{overflow-x:hidden}.appear{display:none}button:focus{outline:none !important}#route2>a{margin-left:20px}.list2{margin-top:50px}.formbox{display:inline-block}.r2_ctn{display:inline-block;margin-left:20px}.route2Item{list-style:none}.r2_list{margin-top:20px;padding-left:0}.r2_list li{margin-top:10px}.firstdata{width:40px}#chatbox{width:350px}#chatbox th,#chatbox td{text-align:center}#profile>a{margin-left:20px}.stack{margin-top:17px;padding-left:15px;padding-right:15px}#center{padding-left:22px}.profile{display:inline-block;vertical-align:middle}.profile_list{font-size:12px;margin-left:30px;cursor:default;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.profile_list span{color:#777}.profile_list p:first-child{font-size:14px;font-weight:bold;color:#535353}.add-stack{float:right}a:link a:hover a:visited a:active{text-decoration:none;color:#fff}h3{font-size:20px}.main_img{margin:40px 380px;display:inline-block}.inputbox{padding:5px 10px;font-size:12px;line-height:1.5;border-radius:3px}.title{padding-left:20px}
+/* All Device */
+/* Mobile Device */
+#chat form {
+  margin-left: 15px;
+}
+#chat > form input {
+  width: 50%;
+  display: inline-block;
+}
+#chat > form input:first-child {
+  width: 25%;
+}
+#pagenation {
+  margin-left: 13px;
+}
+html {
+  width: 100vw;
+}
+body {
+  padding-top: 50px;
+}
+.title {
+  font-size: 25px;
+  padding-left: 15px;
+}
+.appear {
+  display: none;
+}
+.main_img img {
+  width: 100vw;
+}
+.stack {
+  margin-top: 10px;
+}
+.profile_btn {
+  margin-left: 15px;
+}
+.profile_img {
+  width: 100vw;
+}
+.profile_list {
+  margin-top: 15px;
+  font-size: 12px;
+  margin-left: 15px;
+}
+.profile_list span {
+  color: #777;
+}
+.profile_list p:first-child {
+  font-size: 14px;
+  font-weight: bold;
+  color: #535353;
+}
+.add-stack {
+  margin-left: 59%;
+}
+.stack_list {
+  word-break: keep-all;
+}
+.stack-form input {
+  width: 49%;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.route2 > a {
+  margin-left: 15px;
+}
+.list2 {
+  margin-top: 10px;
+}
+.r2-form {
+  margin-left: -2px;
+  margin-bottom: 10px;
+}
+.r2-form input {
+  width: 48%;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.r2-form input:first-child {
+  width: 25%;
+}
+.r2_ctn {
+  margin-bottom: 10px;
+}
+/* Desktop Device */
+@media all and (min-width: 1025px) {
+  #chat h3 {
+    margin-left: 20px;
+  }
+  #chat form {
+    margin-left: 0;
+  }
+  #chat form input {
+    width: 180px;
+  }
+  #chat form input:first-child {
+    margin-left: 20px;
+    width: 70px;
+  }
+  .firstdata {
+    width: 40px;
+  }
+  #chatbox {
+    width: 350px;
+  }
+  #chatbox th,
+  #chatbox td {
+    text-align: center;
+  }
+  #pagenation {
+    margin-left: 20px;
+  }
+  html {
+    width: 1280px;
+  }
+  body {
+    overflow-x: hidden;
+    padding-top: 0;
+  }
+  .appear {
+    display: none;
+  }
+  .main_container {
+    margin-top: 70px;
+  }
+  a:link a:hover a:visited a:active {
+    text-decoration: none;
+    color: #fff;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  .main_img {
+    margin: 40px 380px;
+    display: inline-block;
+  }
+  .main_img img {
+    width: 100%;
+  }
+  .inputbox {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+  }
+  .title {
+    padding-left: 20px;
+  }
+  .profile > a {
+    margin-left: 20px;
+  }
+  .stack {
+    margin-top: 17px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .center_ {
+    padding-left: 22px;
+  }
+  .profile_img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 350px;
+  }
+  .profile_list {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    margin-left: 30px;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .profile_list span {
+    color: #777;
+  }
+  .profile_list p:first-child {
+    font-size: 14px;
+    font-weight: bold;
+    color: #535353;
+  }
+  .add-stack {
+    float: right;
+  }
+  .route2 > a {
+    margin-left: 20px;
+  }
+  .list2 {
+    margin-top: 50px;
+  }
+  .r2-form {
+    display: inline-block;
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+  .r2_ctn {
+    display: inline-block;
+    margin-left: 20px;
+    margin-bottom: 0;
+  }
+  .route2Item {
+    list-style: none;
+  }
+  .r2_list {
+    margin-top: 20px;
+    padding-left: 0;
+  }
+  .r2_list li {
+    margin-top: 10px;
+  }
+}
