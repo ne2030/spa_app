@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('Route2Controller', [])
     .controller('route2Controller', route2Controller);
 

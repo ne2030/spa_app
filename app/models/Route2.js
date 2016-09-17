@@ -1,27 +1,24 @@
-(function() {
-    'use strict';
+'use strict';
 
-    /**
-     *
-     * Route 2
-     */
+/**
+ *
+ * Route 2
+ */
 
-    var Sequelize = require('sequelize');
+var Sequelize = require('sequelize');
 
-    module.exports = function(sequelize) {
-        var route2 = sequelize.define('Route2', {
-            name: {
-                type: Sequelize.STRING(10),
-                allowNull: true
-            },
-            content: {
-                type: Sequelize.STRING(255),
-                allowNull: false
-            },
-        }, {
-            paranoid: true
-        });
-        return route2;
-    };
-
-})();
+module.exports = function(sequelize) {
+    var route2 = sequelize.define('Route2', {
+        name: {
+            type: Sequelize.STRING(10),
+            allowNull: true
+        },
+        content: {
+            type: Sequelize.STRING(255),
+            allowNull: false
+        },
+    }, {
+        paranoid: true
+    });
+    return route2;
+};

@@ -1,14 +1,11 @@
-(function(){
-    'use strict';
+'use strict';
 
-    var controller = require('../controller/api/route2.server.controller.js');
+var controller = require('../controller/api/route2.server.controller.js');
 
-    module.exports = function(router) {
-        router.route('/api/route2')
-            .get(controller.getRoute2)
-            .post(controller.makeItem);
+module.exports = function(router) {
+    router.route('/api/route2')
+        .get(controller.getRoute2)
+        .post(controller.makeItem);
 
-        return router;
-    };
-
-})();
+    return router;
+};

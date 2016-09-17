@@ -1,3 +1,4 @@
+'use strict';
 
     var db = require('../../../config/sequelize'),
         Profile = db.Profile;

@@ -1,3 +1,5 @@
+'use strict';
+
 var Sequelize = require('sequelize'),
     path = require('path'),
     _ = require('lodash'),

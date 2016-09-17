@@ -1,27 +1,24 @@
-(function() {
-    'use strict';
+'use strict';
 
-    /**
-     *
-     * Chat
-     */
+/**
+ *
+ * Chat
+ */
 
-    var Sequelize = require('sequelize');
+var Sequelize = require('sequelize');
 
-    module.exports = function(sequelize) {
-        var chat = sequelize.define('Chat', {
-            name: {
-                type: Sequelize.STRING(10),
-                allowNull: false
-            },
-            content: {
-                type: Sequelize.STRING(255),
-                allowNull: false
-            }
-        }, {
-            paranoid: true
-        });
-        return chat;
-    };
-
-})();
+module.exports = function(sequelize) {
+    var chat = sequelize.define('Chat', {
+        name: {
+            type: Sequelize.STRING(10),
+            allowNull: false
+        },
+        content: {
+            type: Sequelize.STRING(255),
+            allowNull: false
+        }
+    }, {
+        paranoid: true
+    });
+    return chat;
+};
