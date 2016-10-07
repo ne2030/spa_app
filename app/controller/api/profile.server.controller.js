@@ -1,6 +1,6 @@
 'use strict';
 
-    var db = require('../../../config/sequelize'),
+    let db = require('../../../config/sequelize'),
         Profile = db.Profile;
 
     /**
@@ -14,7 +14,7 @@
         Profile.findAndCountAll({
             attributes: ['skill', 'type', 'description', 'mastery']
         }).then(function(result) {
-            var stack = {
+            let stack = {
                 items: result.rows
             };
             res.send(stack);
@@ -35,14 +35,14 @@
          req.checkBody('type', '종류를 입력해주세요').notEmpty();
          req.checkBody('description', '설명을 입력해주세요').notEmpty();
          req.checkBody('mastery', '숙련도를 입력해주세요').notEmpty();
-         var errors = req.validationErrors();
+         let errors = req.validationErrors();
          if (errors){
              console.log(errors);
              res.send(errors[0]);
              return;
          }
 
-         var skill = req.body.skill,
+         let skill = req.body.skill,
              type = req.body.type,
              description = req.body.description,
              mastery = req.body.mastery;

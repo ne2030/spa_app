@@ -9,14 +9,14 @@ function route2Controller($scope, endPoint, $http, toastr) {
     $scope.getRoute2 = function() {
 
         $http.get(endPoint + '/api/route2').then(function(result){
-            var data = result.data;
+            let data = result.data;
             $scope.count = data.count;
             $scope.items = data.items;
         });
     };
 
     $scope.createItem = function() {
-        var newChat = { name: this.name, chat: this.chat };
+        let newChat = { name: this.name, chat: this.chat };
         $http.post(endPoint + '/api/route2', {newChat: newChat}).then(function(result){
             $scope.getRoute2();
             $scope.name = "";

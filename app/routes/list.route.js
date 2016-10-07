@@ -1,6 +1,6 @@
 'use strict';
 
-var controller = require('../controller/api/route2.server.controller.js');
+let controller = require('../controller/api/route2.server.controller.js');
 
 module.exports = function(router) {
     router.route('/api/route2')

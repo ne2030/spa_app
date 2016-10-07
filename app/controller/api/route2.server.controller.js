@@ -1,6 +1,6 @@
 'use strict';
 
-    var _ = require('lodash'),
+    let _ = require('lodash'),
         db = require('../../../config/sequelize'),
         Route2 = db.Route2;
 
@@ -32,8 +32,8 @@
     *  @param next
     */
     module.exports.makeItem = function (req, res, next){
-        var name = req.body.newChat.name;
-        var chat = req.body.newChat.chat;
+        let name = req.body.newChat.name;
+        let chat = req.body.newChat.chat;
         Route2.create({
             name: name,
             content: chat

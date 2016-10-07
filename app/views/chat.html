@@ -15,7 +15,7 @@
                     <th> 이름 </th>
                     <th> 대화 내용 </th>
                     <th> 시간 </th>
-                    <!-- <th> </th> -->
+                    <th> </th>
                 </tr>
             </thead>
             <tbody ng-repeat="chat in chats">
@@ -23,7 +23,7 @@
                     <td> {{chat.name}} </td>
                     <td> {{chat.content}} </td>
                     <td> {{chat.time}} </td>
-                    <!-- <td> <button class="btn btn-danger btn-xs" ng-click="deleteChat(chat)"> del </button> </td> -->
+                    <td> <button class="btn btn-danger btn-xs" ng-click="deleteChat(chat)"> del </button> </td>
                 </tr>
             </tbody>
         </table>

@@ -5,10 +5,10 @@
  * Chat
  */
 
-var Sequelize = require('sequelize');
+let Sequelize = require('sequelize');
 
 module.exports = function(sequelize) {
-    var chat = sequelize.define('Chat', {
+    let chat = sequelize.define('Chat', {
         name: {
             type: Sequelize.STRING(10),
             allowNull: false

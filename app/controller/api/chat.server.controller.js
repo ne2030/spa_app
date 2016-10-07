@@ -1,7 +1,7 @@
 'use strict';
 
-var _ = require('lodash'),
-    async = require('async'),
+let co = require('co'),
+    tfy = require('thunkify'),
     db = require('../../../config/sequelize'),
     util = require('../../../config/util'),
     Chat = db.Chat;
@@ -12,43 +12,41 @@ var _ = require('lodash'),
 * @param res
 * @param next
 */
-// 이해 아직 덜됨 // 참조하는 db 없어서 포함 x
-module.exports.getChat = function(req, res, next) {
-    var page = req.query.page ? parseInt(req.query.page) : 0;
-    var size = 20;
 
-    async.waterfall([
-        function(nextStep) {
-            Chat.findAndCountAll({
-                offset: page,
-                limit: size,
-                order: 'id desc',
-            }).then(function(result) {
-                var paginator = util.pagenation({
-                    req: req,
-                    size: size,
-                    totalCount: result.count,
-                    currentRowCount: result.rows.length
-                });
-                var chat = _.map(result.rows, function(val){
-                    var hour24 = val.createdAt.getHours();
-                    var hour12 = hour24 / 12 > 1 ? '오후 ' + hour24 % 12 : '오전 ' + hour24;
-                    var time = hour12 + ":" + val.createdAt.getMinutes();
-                    return _.extend(val.dataValues, {time: time});
-                });
-                result = _.extend({
-                    count: result.count,
-                    chat: chat
-                }, paginator);
+module.exports.getChat = (req, res, next) => {
+    co(function* (){
+    try {
+        var result;
+        let page = req.query.page ? parseInt(req.query.page) : 0;
+        let size = 20;
 
-                nextStep(null, result);
-            }).catch(nextStep);
-        }
-    ], function(err, result) {
-        if (err) next(err);
-        else res.send(result);
+        let data = yield Chat.findAndCountAll({
+            offset: page,
+            limit: size,
+            order: 'id desc'
+        });
+        let chat = data.rows.map(val => {
+            let hour24 = val.createdAt.getHours();
+            let hour12 = hour24 / 12 > 1 ? '오후 ' + hour24 % 12 : '오전 ' + hour24;
+            let time = hour12 + ":" + val.createdAt.getMinutes();
+            return Object.assign(val.dataValues, {time: time});
+        });
+
+        let paginator = util.pagenation({
+            req: req,
+            size: size,
+            totalCount: data.count,
+            currentRowCount: data.rows.length
+        });
+
+        result = Object.assign({
+            count: data.count,
+            chat: chat
+        }, paginator);
+        res.send(result);
+    } catch (e) { console.log(e.name, e.message); next(e); }
     });
-};
+}
 
 /**
 * DELETE: /api/chat/:chatId
@@ -57,15 +55,19 @@ module.exports.getChat = function(req, res, next) {
 * @param next
 */
 module.exports.deleteChat = function (req, res, next) {
-    var chatId = req.params.chatId;
-    Chat.destroy({
-        where: {
-            id: chatId
-        }
-    }).then(function(){
+    co(function*(){
+    try{
+
+        let chatId = req.params.chatId;
+        yield Chat.destroy({
+            where: {
+                id: chatId
+            }
+        });
         res.send({});
-    }).catch(next);
-};
+    } catch(e){ next(e);}
+    });
+}
 
 /**
 * POST: /api/chat
@@ -74,23 +76,26 @@ module.exports.deleteChat = function (req, res, next) {
 * @param next
 */
 module.exports.createChat = function (req, res, next) {
+co(function*(){
+    // empty input value checking!
     req.checkBody('name', '이름을 입력해주세요').notEmpty();
     req.checkBody('content', '내용을 입력해주세요').notEmpty();
-    var errors = req.validationErrors();
+    let errors = req.validationErrors();
     if (errors){
         console.log(errors);
         res.send(errors[0]);
-        return;
-    }
+    } else {
 
-    var name = req.body.name;
-    var content = req.body.content;
-    Chat.create({
-        name: name,
-        content: content,
-    }).then(function(result){
-        res.send(result);
-    }, function(err) {
-        next(err);
-    });
-};
+    // real DB processing
+    try {
+        let name = req.body.name;
+        let content = req.body.content;
+        yield Chat.create({
+            name: name,
+            content: content,
+        });
+        res.send({});
+    } catch (e) { next(e); }}
+});
+
+}

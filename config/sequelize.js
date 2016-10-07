@@ -1,14 +1,14 @@
 'use strict';
 
-var Sequelize = require('sequelize'),
+let Sequelize = require('sequelize'),
     path = require('path'),
     _ = require('lodash'),
     fs = require('fs'),
     db = {};
 
-var config = require('./config');
+let config = require('./config');
 
-var sequelize = new Sequelize(
+let sequelize = new Sequelize(
     'spaApp',
     'root',
     '', {
@@ -17,24 +17,22 @@ var sequelize = new Sequelize(
         port: 3306
     });
 
-var rootPath = path.normalize(__dirname + '/..');
-var modelsDir = rootPath + '/app/models';
+let rootPath = path.normalize(__dirname + '/..');
+let modelsDir = rootPath + '/app/models';
 
 // loop through all files in models directory ignoring hidden files and this file
 fs.readdirSync(modelsDir)
-	.filter(function(file) {
-		return (file.indexOf('.') !== -1) && (file !== 'index.js');
-	})
+	.filter(file => (file.indexOf('.') !== -1) && (file !== 'index.js'))
 	// import model files and save model names
-	.forEach(function(file) {
+	.forEach(file => {
 		console.log('Loading model file ' + file);
-		var model = sequelize.import(path.join(modelsDir, file));
+		let model = sequelize.import(path.join(modelsDir, file));
 		db[model.name] = model;
 	});
 
 sequelize
     .authenticate()
-    .then(function(err) {
+    .then(function() {
         console.log('Connection has been established successfully.');
     }, function(err) {
         console.log('Unable to connect to the database:', err);
@@ -45,11 +43,11 @@ sequelize
 //     require(path.resolve(modelPath))(sequelize);
 // });
 
-var Profile = require('../app/models/Profile')(sequelize);
-var Route2 = require('../app/models/Route2')(sequelize);
-var Chat = require('../app/models/Chat')(sequelize);
+let Profile = require('../app/models/Profile')(sequelize);
+let Route2 = require('../app/models/Route2')(sequelize);
+let Chat = require('../app/models/Chat')(sequelize);
 
-// assign the sequelize variables to the db object and returning the db.
+// assign the sequelize letiables to the db object and returning the db.
 module.exports = _.extend({
 	sequelize: sequelize,
 	Sequelize: Sequelize

@@ -5,10 +5,10 @@
  * Profile
  */
 
-var Sequelize = require('sequelize');
+let Sequelize = require('sequelize');
 
 module.exports = function(sequelize) {
-    var profile = sequelize.define('Profile', {
+    let profile = sequelize.define('Profile', {
         skill: {
             type: Sequelize.STRING(10),
             allowNull: false

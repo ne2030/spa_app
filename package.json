@@ -6,6 +6,7 @@
   "dependencies": {
     "async": "^2.0.0-rc.6",
     "body-parser": "^1.15.2",
+    "co": "^4.6.0",
     "consolidate": "^0.14.1",
     "cors": "^2.8.0",
     "express": "^4.14.0",
@@ -16,7 +17,8 @@
     "mysql": "^2.11.1",
     "path": "^0.12.7",
     "sequelize": "^3.23.4",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "thunkify": "^2.1.2"
   },
   "devDependencies": {},
   "scripts": {

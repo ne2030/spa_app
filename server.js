@@ -2,7 +2,7 @@
 'use strict';
 
 // node_module dependencies
-var express = require('express'),
+let express = require('express'),
     path = require('path'),
     async = require('async'),
     bodyParser = require('body-parser'),
@@ -11,11 +11,12 @@ var express = require('express'),
     expressValidator = require('express-validator'),
     CORS = require('cors');
 
-var app = express();
+let app = express();
 
 // custom js module
-var config = require('./config/config'),
-    sequelize = require('./config/sequelize');
+let config = require('./config/config'),
+    sequelize = require('./config/sequelize'),
+    errorHandler = require('./config/errorHandler');
 
 //express engine
 app.engine('html', consolidate.swig);
@@ -28,15 +29,15 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(expressValidator());
 
 // Cross Origin Resource Sharing
-var whitelist = [
+let whitelist = [
     'http://52.78.133.77',
     'http://localhost',
     'http://localhost:8080',
     'http://eleclion.asia'
 ];
-var corsOptions = {
+let corsOptions = {
     origin: function(origin, callback) {
-        var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+        let originIsWhitelisted = whitelist.indexOf(origin) !== -1;
         callback(null, originIsWhitelisted);
     },
     credentials: true
@@ -44,22 +45,22 @@ var corsOptions = {
 app.use(CORS(corsOptions));
 
 // express static
-app.use(express.static(path.join(__dirname, './public')));
-app.use(express.static(path.join(__dirname, './bower_components')));
-app.use(express.static(path.join(__dirname, './app')));
-app.use(express.static(path.join(__dirname, './app/views')));
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/bower_components')));
+app.use(express.static(path.join(__dirname, '/app')));
+app.use(express.static(path.join(__dirname, '/app/views')));
 
 // express index route
 app.get('/', function(req, res) {
     res.render('index');
 });
 
-var router = express.Router();
+let router = express.Router();
 
 // Globbing route files
-config.getGlobbedFiles('./app/routes/*.js').forEach(function(routePath) {
+config.getGlobbedFiles('./app/routes/*.js').forEach(routePath => {
     console.log(routePath);
-	var _router = require(path.resolve(routePath))(router);
+	let _router = require(routePath)(router);
 	app.use(_router);
 });
 
@@ -67,14 +68,14 @@ config.getGlobbedFiles('./app/routes/*.js').forEach(function(routePath) {
  *   Sequelize setting
  */
 
-// (function() {
+// () => {
 //     sequelize.sequelize.sync({
 //         force: true
 //     }).then(function () {
 //         require('./config/seed')(sequelize);
 //     });
-// })();
+// }();
 
-app.listen(8080, function() {
-    console.log('server is running at localhost:8080');
-});
+app.use(errorHandler);
+
+app.listen(8080, () => console.log('server is running at localhost:8080'));

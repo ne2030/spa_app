@@ -5,10 +5,10 @@
  * Route 2
  */
 
-var Sequelize = require('sequelize');
+let Sequelize = require('sequelize');
 
 module.exports = function(sequelize) {
-    var route2 = sequelize.define('Route2', {
+    let route2 = sequelize.define('Route2', {
         name: {
             type: Sequelize.STRING(10),
             allowNull: true

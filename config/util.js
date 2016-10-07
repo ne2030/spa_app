@@ -1,22 +1,22 @@
 'use strict';
 
-var _ = require('lodash'),
+let _ = require('lodash'),
     config = require('./config');
 
 module.exports.pagenation = function(args) {
     args.req = args.req || {};
 
-    var path = args.req._parsedOriginalUrl.pathname || '';
-    var query = args.req.query || {};
-    var size = args.size || 20;
-    var page = parseInt(query.page) || 0;
-    var totalCount = args.totalCount || 0;
-    var currentRowCount = args.currentRowCount || 0;
+    let path = args.req._parsedOriginalUrl.pathname || '';
+    let query = args.req.query || {};
+    let size = args.size || 20;
+    let page = parseInt(query.page) || 0;
+    let totalCount = args.totalCount || 0;
+    let currentRowCount = args.currentRowCount || 0;
 
-    var prev = null, next = null;
+    let prev = null, next = null;
 
     if (page !== 0) {
-        var prevPage = (page - size);
+        let prevPage = (page - size);
         prevPage = prevPage < 0 ? 0 : prevPage;
         query.page = prevPage;
         prev = makeUrlFromParams(query);
@@ -28,7 +28,7 @@ module.exports.pagenation = function(args) {
     }
 
     function makeUrlFromParams(params) {
-        var str = Object.keys(params).map(function(key) {
+        let str = Object.keys(params).map(function(key) {
             return key + '=' + params[key];
         }).join('&');
         return config.endPoint + path + '?' + str;

@@ -8,14 +8,14 @@ function profileController($scope, $http, endPoint, toastr) {
 
     $scope.getProfile = function() {
         $http.get(endPoint + '/api/profile').then(function(result){
-            var data = result.data;
+            let data = result.data;
             $scope.items = data.items;
         });
     };
 
     $scope.createStack = function() {
 
-        var skill =  this.skill,
+        let skill =  this.skill,
             type = this.type,
             description =  this.description,
             mastery =  this.mastery;
