@@ -4,18 +4,20 @@
 // node_module dependencies
 let express = require('express'),
     path = require('path'),
-    async = require('async'),
     bodyParser = require('body-parser'),
-    swig = require('swig'),
+    // let swig = require('swig'),
     consolidate = require('consolidate'),
     expressValidator = require('express-validator'),
     CORS = require('cors');
+// require('babel-register')({
+//         'presets': ['es2015']
+// });
 
 let app = express();
 
 // custom js module
 let config = require('./config/config'),
-    sequelize = require('./config/sequelize'),
+    // sequelize = require('./config/sequelize'),
     errorHandler = require('./config/errorHandler');
 
 //express engine
@@ -59,7 +61,7 @@ let router = express.Router();
 
 // Globbing route files
 config.getGlobbedFiles('./app/routes/*.js').forEach(routePath => {
-    console.log(routePath);
+    // console.log(routePath);
 	let _router = require(routePath)(router);
 	app.use(_router);
 });
@@ -68,13 +70,13 @@ config.getGlobbedFiles('./app/routes/*.js').forEach(routePath => {
  *   Sequelize setting
  */
 
-// () => {
+// (function(){
 //     sequelize.sequelize.sync({
 //         force: true
 //     }).then(function () {
-//         require('./config/seed')(sequelize);
+//         require('./config/seed.js')(sequelize);
 //     });
-// }();
+// })();
 
 app.use(errorHandler);
 

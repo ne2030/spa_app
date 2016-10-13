@@ -2,7 +2,7 @@
 
 module.exports = (err,req,res,next) => {
     if (!err) return next();
-    console.log(err);
+    // console.log(err);
 
     let route = req.originalMethod || req.method;
 
@@ -14,4 +14,4 @@ module.exports = (err,req,res,next) => {
         route: route
     });
     } else return next();
-}
+};

@@ -6,14 +6,14 @@ angular.module('ProfileController', [])
 /** @ngInject */
 function profileController($scope, $http, endPoint, toastr) {
 
-    $scope.getProfile = function() {
-        $http.get(endPoint + '/api/profile').then(function(result){
-            let data = result.data;
-            $scope.items = data.items;
+    $scope.getProfile = () => {
+        $http.get(endPoint + '/api/profile')
+        .then((result) => {
+            $scope.items = result.data;
         });
     };
 
-    $scope.createStack = function() {
+    $scope.createStack = () => {
 
         let skill =  this.skill,
             type = this.type,
@@ -25,19 +25,17 @@ function profileController($scope, $http, endPoint, toastr) {
             type: type,
             description: description,
             mastery: mastery
-        }).then(
-            function(result){
+        })
+        .then((result) => {
                 if (result.data.msg) {
                     toastr.error(result.data.msg, 'Error');
                 } else {
                     $scope.getProfile();
-                    $scope.skill = "";
-                    $scope.type = "";
-                    $scope.description = "";
-                    $scope.mastery = "";
-                }
-            },  function(err) {
-                toastr.error(err.data.message, 'Error');
-            });
+                    $scope.skill = '';
+                    $scope.type = '';
+                    $scope.description = '';
+                    $scope.mastery = '';
+                }})
+        .catch((err) => { toastr.error(err.data.message, 'Error'); });
     };
 }

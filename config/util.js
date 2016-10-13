@@ -1,7 +1,6 @@
 'use strict';
 
-let _ = require('lodash'),
-    config = require('./config');
+let config = require('./config');
 
 module.exports.pagenation = function(args) {
     args.req = args.req || {};

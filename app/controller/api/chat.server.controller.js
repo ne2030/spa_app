@@ -1,7 +1,6 @@
 'use strict';
 
 let co = require('co'),
-    tfy = require('thunkify'),
     db = require('../../../config/sequelize'),
     util = require('../../../config/util'),
     Chat = db.Chat;
@@ -28,10 +27,9 @@ module.exports.getChat = (req, res, next) => {
         let chat = data.rows.map(val => {
             let hour24 = val.createdAt.getHours();
             let hour12 = hour24 / 12 > 1 ? '오후 ' + hour24 % 12 : '오전 ' + hour24;
-            let time = hour12 + ":" + val.createdAt.getMinutes();
+            let time = hour12 + ':' + val.createdAt.getMinutes();
             return Object.assign(val.dataValues, {time: time});
         });
-
         let paginator = util.pagenation({
             req: req,
             size: size,
@@ -44,9 +42,9 @@ module.exports.getChat = (req, res, next) => {
             chat: chat
         }, paginator);
         res.send(result);
-    } catch (e) { console.log(e.name, e.message); next(e); }
+    } catch (e) { next(e); }
     });
-}
+};
 
 /**
 * DELETE: /api/chat/:chatId
@@ -57,7 +55,6 @@ module.exports.getChat = (req, res, next) => {
 module.exports.deleteChat = function (req, res, next) {
     co(function*(){
     try{
-
         let chatId = req.params.chatId;
         yield Chat.destroy({
             where: {
@@ -67,7 +64,7 @@ module.exports.deleteChat = function (req, res, next) {
         res.send({});
     } catch(e){ next(e);}
     });
-}
+};
 
 /**
 * POST: /api/chat
@@ -82,7 +79,7 @@ co(function*(){
     req.checkBody('content', '내용을 입력해주세요').notEmpty();
     let errors = req.validationErrors();
     if (errors){
-        console.log(errors);
+        // console.log(errors);
         res.send(errors[0]);
     } else {
 
@@ -98,4 +95,4 @@ co(function*(){
     } catch (e) { next(e); }}
 });
 
-}
+};

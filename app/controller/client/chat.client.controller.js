@@ -22,7 +22,7 @@ function chatController($scope, $http, endPoint, toastr){
 
     $scope.deleteChat = function(chat){
         let chatId = chat.id;
-        $http.delete(endPoint + '/api/chat/' + chatId).then(function(result){
+        $http.delete(endPoint + '/api/chat/' + chatId).then(function(){
             $scope.getChat();
             toastr.success('아이템이 삭제되었습니다.', 'Success');
         }, function(err) {
@@ -39,8 +39,8 @@ function chatController($scope, $http, endPoint, toastr){
                     toastr.error(result.data.msg, 'Error');
                 } else {
                     $scope.getChat();
-                    $scope.name = "";
-                    $scope.content = "";
+                    $scope.name = '';
+                    $scope.content = '';
                 }
             }, function(err) {
                 toastr.error(err.data.message, 'Error');

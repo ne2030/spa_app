@@ -4,9 +4,10 @@ let Sequelize = require('sequelize'),
     path = require('path'),
     _ = require('lodash'),
     fs = require('fs'),
+    config = require('./config.js'),
     db = {};
 
-let config = require('./config');
+// let config = require('./config');
 
 let sequelize = new Sequelize(
     'spaApp',
@@ -32,20 +33,13 @@ fs.readdirSync(modelsDir)
 
 sequelize
     .authenticate()
-    .then(function() {
-        console.log('Connection has been established successfully.');
-    }, function(err) {
-        console.log('Unable to connect to the database:', err);
-    });
+    .then(() => console.log('Connection has been established successfully.'),
+     (err) => console.log('Unable to connect to the database:', err));
 
 // Globbing model files
-// config.getGlobbedFiles('../app/models/*.js').forEach(function(modelPath) {
-//     require(path.resolve(modelPath))(sequelize);
-// });
-
-let Profile = require('../app/models/Profile')(sequelize);
-let Route2 = require('../app/models/Route2')(sequelize);
-let Chat = require('../app/models/Chat')(sequelize);
+config.getGlobbedFiles('../app/models/*.js').forEach((modelPath) => {
+    require(path.resolve(modelPath))(sequelize);
+});
 
 // assign the sequelize letiables to the db object and returning the db.
 module.exports = _.extend({
