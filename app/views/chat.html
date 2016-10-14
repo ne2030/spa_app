@@ -1,8 +1,8 @@
 <section id="chat" ng-init="getChat()">
     <h1 class="title"> Chat </h1>
     <form class="form-inline" ng-submit="createChat()" method="post">
-        <input class="inputbox form-control" type="text" ng-model="name" placeholder="이름"/>
-        <input class="inputbox form-control" type="text" ng-model="content" placeholder="내용"/>
+        <input class="inputbox form-control" type="text" ng-model="name" maxlength="7" placeholder="이름"/>
+        <input class="inputbox form-control" rows='1' type="text" ng-model="content" maxlength="15" placeholder="내용">
         <button class="btn btn-primary btn-sm"> 보내기 </button>
     </form>
 
