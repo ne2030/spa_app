@@ -10,6 +10,7 @@
             url: '/',
             templateUrl: 'main.html'
         })
+
         .state('profile', {
             url: '/profile',
             templateUrl: 'profile.html',
@@ -31,9 +32,22 @@
                 templateUrl: 'route2.list.html',
                 controller: 'route2Controller'
             })
+
         .state('chat', {
             url: '/chat',
             templateUrl: 'chat.html',
             controller: 'chatController'
+        })
+
+        .state('login', {
+            url: '/login',
+            templateUrl: 'login.html',
+            controller: 'userController'
+        })
+
+        .state('signup', {
+            url: '/signup',
+            templateUrl: 'signup.html',
+            contorller: 'userController'
         });
     }

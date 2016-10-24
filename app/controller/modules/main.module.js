@@ -10,6 +10,7 @@
         'ProfileController',
         'Route2Controller',
         'ChatController',
+        'UserController',
         'route'
     ])
     .constant('endPoint', 'http://localhost:8080')

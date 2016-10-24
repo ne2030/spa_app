@@ -8,7 +8,7 @@
 let Sequelize = require('sequelize');
 
 module.exports = function(sequelize) {
-    let profile = sequelize.define('Profile', {
+    let Profile = sequelize.define('Profile', {
         skill: {
             type: Sequelize.STRING(10),
             allowNull: false
@@ -28,5 +28,5 @@ module.exports = function(sequelize) {
     }, {
         paranoid: true
     });
-    return profile;
+    return Profile;
 };

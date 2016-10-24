@@ -7,6 +7,11 @@
 let _ = require('lodash'),
     glob = require('glob');
 
+// Detail config exports
+module.exports = Object.assign({},
+    require('./env/all')
+);
+
 /**
  * Get files by glob patterns
  */

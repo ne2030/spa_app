@@ -8,7 +8,7 @@
 let Sequelize = require('sequelize');
 
 module.exports = function(sequelize) {
-    let chat = sequelize.define('Chat', {
+    let Chat = sequelize.define('Chat', {
         name: {
             type: Sequelize.STRING(10),
             allowNull: false
@@ -20,5 +20,5 @@ module.exports = function(sequelize) {
     }, {
         paranoid: true
     });
-    return chat;
+    return Chat;
 };

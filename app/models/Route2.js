@@ -8,7 +8,7 @@
 let Sequelize = require('sequelize');
 
 module.exports = function(sequelize) {
-    let route2 = sequelize.define('Route2', {
+    let Route2 = sequelize.define('Route2', {
         name: {
             type: Sequelize.STRING(10),
             allowNull: true
@@ -20,5 +20,5 @@ module.exports = function(sequelize) {
     }, {
         paranoid: true
     });
-    return route2;
+    return Route2;
 };
