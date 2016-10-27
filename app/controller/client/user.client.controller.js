@@ -6,7 +6,7 @@ angular.module('UserController', [])
 /** @ngIngect */
 function userController($scope, endPoint, $http, $location ,toastr) {
 
-    let userStatus = localStorage.getItem('authentication');
+    let userStatus = JSON.parse(localStorage.getItem('authentication'));
     if (userStatus && userStatus.userId) {
         $location.path('/');
         toastr.error('Error', '이미 로그인 되어있습니다.');
