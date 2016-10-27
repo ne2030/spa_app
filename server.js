@@ -3,12 +3,14 @@
 
 // custom js module
 let app = require('./config/express')();
-    sequelize = require('./config/sequelize'); //eslint-disable-line
+
+
 
 /**
  *   Sequelize setting
  */
 
+// let sequelize = require('./config/sequelize'); //eslint-disable-line
 // (function(){
 //     sequelize.sequelize.sync({
 //         force: true
@@ -16,6 +18,8 @@ let app = require('./config/express')();
 //         require('./config/seed.js')(sequelize);
 //     });
 // })();
+
+
 
 require('./config/passport')();
 

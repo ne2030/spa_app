@@ -1,7 +1,7 @@
-<div class="well" ng-init="getProfile()">
+<div class="well" ng-init="getStack()">
     <h4 style="display:inline-block;"> Stack list</h4>
     <button class="btn btn-warning btn-xs add-stack"> 추가 </button>
-    <form class="form-inline stack-form appear" ng-submit="createStack()" method="post">
+    <form class="form-inline stack-form hidden" ng-submit="createStack()" method="post">
         <input class="inputbox form-control" type="text" placeholder="skill" ng-model="skill" />
         <input class="inputbox form-control" type="text" placeholder="type" ng-model="type" />
         <input class="inputbox form-control" type="text" placeholder="description" ng-model="description" />
@@ -31,9 +31,14 @@
 </div>
 
 <script>
-    // document.getElementsByClass('.add-stack')[0].on('click', () =>
-    //     document.getElementsbyClassName('.stack-form').classList.toggle('appear'));
-    $('.add-stack').click(function(){
-        $('.stack-form').toggleClass('appear');
-    });
+    // pure javascript
+
+    document.getElementsByClassName('add-stack')[0].addEventListener('click', () =>
+        document.getElementsByClassName('stack-form')[0].classList.toggle('hidden'));
+
+    // jQuery
+
+    // $('.add-stack').click(function(){
+    //     $('.stack-form').toggleClass('appear');
+    // });
 </script>

@@ -4,12 +4,12 @@ let db = require('../../../config/sequelize'),
     Profile = db.Profile;
 
 /**
- *  GET: /api/profile
+ *  GET: /api/stack
  *  @param req
  *  @param res
  *  @param next
  */
-module.exports.getProfile = (req, res, next) => {
+module.exports.getStack = (req, res, next) => {
 
     Profile.findAndCountAll({
         attributes: ['skill', 'type', 'description', 'mastery']
@@ -19,7 +19,7 @@ module.exports.getProfile = (req, res, next) => {
 };
 
 /**
- *  POST: /api/profile
+ *  POST: /api/stack
  *  @param req
  *  @param res
  *  @param next

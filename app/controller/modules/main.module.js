@@ -6,7 +6,7 @@
         'ngAnimate',
         'toastr',
 
-
+        'Core',
         'ProfileController',
         'Route2Controller',
         'ChatController',

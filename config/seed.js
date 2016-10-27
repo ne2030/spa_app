@@ -2,9 +2,9 @@
 
 module.exports = (db) => {
     try {
-        [ route2(db), chat(db), profile(db)];
+        [ route2(db), chat(db), profile(db), user(db)];
     }
-    catch(e) { console.log(`[[[${e} in seed file!`); }
+    catch(e) { console.log(`[[[${e} in seed file!`); } //eslint-disable-line
 };
 
 function route2(db) {
@@ -32,4 +32,9 @@ function chat(db) {
 function profile(db){
     let stack = [{ skill: 'HTML5', type: 'Front', description: '웹 마크업', mastery: 75 },{ skill: 'CSS3', type: 'Front', description: '웹 마크업 디자인', mastery: 70 }, { skill: 'Javascript', type: 'Front', description: '주요 활용 언어', mastery: 40 }, { skill: 'Node.js', type: 'Back', description: '비동기 이벤트 기반 런타임', mastery: 40 }, { skill: 'Angular.js', type: 'Front', description: '비동기 웹 프레임워크', mastery: 30 }];
     db.Profile.bulkCreate(stack);
+}
+
+function user(db){
+    let _administrator = { userId: 'ne2030', password: 'rudgnstls2', email: 'erguono@naver.com', phone: '01053852384', roles: ['admin', 'user'], age: 22 };
+    db.User.create(_administrator);
 }

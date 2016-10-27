@@ -13,7 +13,6 @@ try {
         issuer: config.sessionIssuer,
         audience: aud
     };
-
     let token = jwt.sign({ id: user.userId }, config.sessionSecret, jwtOptions);
     return token;
 } catch (e) { return next(e); }

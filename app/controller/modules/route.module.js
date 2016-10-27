@@ -43,11 +43,11 @@
             url: '/login',
             templateUrl: 'login.html',
             controller: 'userController'
-        })
-
-        .state('signup', {
-            url: '/signup',
-            templateUrl: 'signup.html',
-            contorller: 'userController'
         });
+
+        // .state('signup', {
+        //     url: '/signup',
+        //     templateUrl: 'signup.html',
+        //     contorller: 'userController'
+        // });
     }

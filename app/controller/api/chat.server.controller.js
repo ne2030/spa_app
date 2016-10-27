@@ -24,12 +24,14 @@ module.exports.getChat = (req, res, next) => {
             limit: size,
             order: 'id desc'
         });
+
         let chat = data.rows.map(val => {
             let hour24 = val.createdAt.getHours();
             let hour12 = hour24 / 12 > 1 ? '오후 ' + hour24 % 12 : '오전 ' + hour24;
             let time = hour12 + ':' + val.createdAt.getMinutes();
             return Object.assign(val.dataValues, {time: time});
         });
+
         let paginator = util.pagenation({
             req: req,
             size: size,
@@ -78,21 +80,22 @@ co(function*(){
     req.checkBody('name', '이름을 입력해주세요').notEmpty();
     req.checkBody('content', '내용을 입력해주세요').notEmpty();
     let errors = req.validationErrors();
-    if (errors){
+    if (!errors) {
+        try {
+            let name = req.body.name;
+            let content = req.body.content;
+            yield Chat.create({
+                name: name,
+                content: content,
+            });
+            res.send({});
+        } catch (e) {
+            next(e);
+        }
+    } else {
         // console.log(errors);
         res.send(errors[0]);
-    } else {
-
-    // real DB processing
-    try {
-        let name = req.body.name;
-        let content = req.body.content;
-        yield Chat.create({
-            name: name,
-            content: content,
-        });
-        res.send({});
-    } catch (e) { next(e); }}
+    }
 });
 
 };

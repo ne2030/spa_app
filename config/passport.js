@@ -3,7 +3,7 @@
 let passport = require('passport'),
     path = require('path');
 
-let config = require('config');
+let config = require('./config');
 
 module.exports = () => {
     //Serialize Sessions
@@ -17,7 +17,8 @@ module.exports = () => {
     });
 
     //Get strategies
-    config.getGlobbedFiles('./strategies/*.js').forEach((strategy) => {
+    config.getGlobbedFiles(__dirname + '/strategies/*.js').forEach((strategy) => {
+        console.log(strategy); //eslint-disable-line
         require(path.resolve(strategy))();
     });
 };

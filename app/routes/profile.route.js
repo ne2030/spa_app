@@ -3,8 +3,8 @@
 let controller = require('../controller/api/profile.server.controller.js');
 
 module.exports = function(router) {
-    router.route('/api/profile')
-        .get(controller.getProfile)
+    router.route('/api/stack')
+        .get(controller.getStack)
         .post(controller.createStack);
     return router;
 };

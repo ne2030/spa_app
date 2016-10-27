@@ -11,7 +11,7 @@ let path = require('path'),
 
 let config = require('./config'),
     errorHandler = require('./errorHandler'),
-    jwt = require('jwt');
+    jwt = require('jsonwebtoken');
 
 
 module.exports = function(){
@@ -75,6 +75,8 @@ module.exports = function(){
             } else {
                 req.user = user;
             }
+        } else {
+            next();
         }
     });
 
@@ -86,8 +88,9 @@ module.exports = function(){
     let router = express.Router();
 
     // Globbing route files
-    config.getGlobbedFiles(path.join(__dirname, '../app/routes/*.js')).forEach(routePath => {
+    config.getGlobbedFiles(path.join(__dirname, '../app/routes/*.js')).forEach((routePath) => {
         let _router = require(routePath)(router);
+        console.log(routePath); //eslint-disable-line
         app.use(_router);
     });
 

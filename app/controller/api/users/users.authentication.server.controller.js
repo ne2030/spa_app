@@ -2,10 +2,11 @@
 
 let passport = require('passport'),
     bcrypt = require('bcrypt'),
-    jwt = require('./jwt'),
+    co = require('co'),
+    jwt = require('../../../../config/jwt'),
     config = require('../../../../config/config'),
     db = require('../../../../config/sequelize'),
-    User = db.user;
+    RefreshToken = db.RefreshToken;
 
 /**
 * POST: /auth/login
@@ -20,19 +21,25 @@ module.exports.login = (req, res, next) => {
     //     password = req.body.password;
 
     passport.authenticate('local', (err, user, info) => {
-        if (err) {
+
+    co(function* (){
+    try {
+        if (err || !user) {
             next({message: info || err, statusCode: 401});
         } else {
             let refreshToken = create_refreshToken();
 
-            let create_refreshToken = () => {
-                let salt = bcrypt.genSaltSync(10);
-                return bcrypt.hashSync(config.tokenSecret, salt);
-            };
+            yield RefreshToken.create({
+                refreshToken: refreshToken,
+                expiredAt: Date.now() + 60 * 1000 * 24 * 30,
+                UserId: user.id
+            });
 
             let jwToken = jwt.generateToken({userId: user.userId}, req.hostname, next);
             res.send({'refreshToken': refreshToken, 'jwToken': jwToken, 'userId': user.userId });
         }
+    } catch (e) { next(e); }
+    });
     })(req, res, next);
 };
 
@@ -48,3 +55,9 @@ module.exports.login = (req, res, next) => {
 //     return 'e';
 //
 // };
+
+
+function create_refreshToken(){
+    let salt = bcrypt.genSaltSync(10);
+    return bcrypt.hashSync(config.tokenSecret, salt);
+}

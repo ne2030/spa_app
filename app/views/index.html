@@ -15,7 +15,7 @@
 
     <title>Main page</title>
 </head>
-<body>
+<body ng-controller="core">
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -36,8 +36,8 @@
                 <li><a ui-sref="chat">Chat</a></li>
 
                 <!-- dropdown menu -->
-                <li class="dropdown open">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Dropdown <span class="caret"></span></a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="#">Action</a></li>
                       <li><a href="#">Another action</a></li>
@@ -49,9 +49,10 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navber-right">
-                <li><a ui-sref="login">Log in</a></li>
-                <li><a ui-sref="signup">Sign Up</a></li>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ui-sref="login" ng-hide="isLoggedIn()">Log in</a></li>
+                <li><a ng-click="logOut()" ng-show="isLoggedIn()">Log out</a></li>
+                <!-- <li><a ui-sref="signup">Sign Up</a></li> -->
             </ul>
         </div>
     </div>
@@ -79,16 +80,15 @@
 <script src="controller/modules/main.module.js"></script>
 <script src="controller/modules/route.module.js"></script>
 
-<!-- angular api  -->
-<!--<script scr="controller/api/chat.server.controller.js"></script>-->
-<!--<script scr="controller/api/profile.server.controller.js"></script>-->
-<!--<script scr="controller/api/route2.server.controller.js"></script>-->
+<!-- angular config -->
+<script src="controller/modules/config/user.authenticate.config.js"></script>
 
 <!-- angular client controller -->
 <script src="controller/client/chat.client.controller.js"></script>
 <script src="controller/client/profile.client.controller.js"></script>
 <script src="controller/client/route2.client.controller.js"></script>
-
+<script src="controller/client/user.client.controller.js"></script>
+<script src="controller/client/core.client.controller.js"></script>
 
 </body>
 </html>

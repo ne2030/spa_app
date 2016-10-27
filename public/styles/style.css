@@ -23,8 +23,21 @@ body {
   font-size: 25px;
   padding-left: 15px;
 }
-.appear {
+.hidden {
   display: none;
+}
+btn:focus,
+btn:active,
+btn:active:focus {
+  outline: none;
+}
+.nav li {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .main_img img {
   width: 100vw;
@@ -118,25 +131,31 @@ body {
     overflow-x: hidden;
     padding-top: 0;
   }
-  .appear {
-    display: none;
-  }
-  .main_container {
-    margin-top: 70px;
+  h3 {
+    font-size: 20px;
   }
   a:link a:hover a:visited a:active {
     text-decoration: none;
     color: #fff;
   }
-  h3 {
-    font-size: 20px;
+  .nav li {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
-  .main_img {
-    margin: 40px 380px;
-    display: inline-block;
+  .hidden {
+    display: none;
   }
-  .main_img img {
-    width: 100%;
+  .main_container {
+    margin-top: 70px;
+  }
+  btn:active,
+  btn:focus,
+  btn:active:focus {
+    outline: none;
   }
   .inputbox {
     padding: 5px 10px;
@@ -146,6 +165,16 @@ body {
   }
   .title {
     padding-left: 20px;
+  }
+  .navbar-right {
+    padding-right: 10px;
+  }
+  .main_img {
+    margin: 40px 380px;
+    display: inline-block;
+  }
+  .main_img img {
+    width: 100%;
   }
   .profile > a {
     margin-left: 20px;

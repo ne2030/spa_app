@@ -6,8 +6,8 @@ angular.module('ProfileController', [])
 /** @ngInject */
 function profileController($scope, $http, endPoint, toastr) {
 
-    $scope.getProfile = () => {
-        $http.get(endPoint + '/api/profile')
+    $scope.getStack = () => {
+        $http.get(endPoint + '/api/stack')
         .then((result) => {
             $scope.items = result.data;
         });
@@ -20,7 +20,7 @@ function profileController($scope, $http, endPoint, toastr) {
             description =  this.description,
             mastery =  this.mastery;
 
-        $http.post(endPoint + '/api/profile', {
+        $http.post(endPoint + '/api/stack', {
             skill: skill,
             type: type,
             description: description,
@@ -30,7 +30,7 @@ function profileController($scope, $http, endPoint, toastr) {
                 if (result.data.msg) {
                     toastr.error(result.data.msg, 'Error');
                 } else {
-                    $scope.getProfile();
+                    $scope.getStacks();
                     $scope.skill = '';
                     $scope.type = '';
                     $scope.description = '';

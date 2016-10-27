@@ -1,13 +1,13 @@
 'use strict';
 
-var controller = require('../controllers/api/users.server.controller.js');
+var controller = require('../controller/api/users.server.controller.js');
 
 module.exports = function(router) {
     // 로그인 및 회원가입
-    router.route('/auth/signup').post(controller.signup);
+    // router.route('/auth/signup').post(controller.signup);
     router.route('/auth/login').post(controller.login);
-    router.route('/auth/logout').get(controller.logout);
-    router.route('/auth/refresh').post(controller.refresh);
+    // router.route('/auth/logout').get(controller.logout);
+    // router.route('/auth/refresh').post(controller.refresh);
 
     // 내정보 & 탈퇴
     // router.route('/users/me')

@@ -15,7 +15,7 @@ module.exports = function(sequelize) {
             allowNull: false
         },
         password: {
-            type: Sequelize.STRING(10),
+            type: Sequelize.STRING,
             allowNull: false
         },
         email: {
@@ -23,7 +23,7 @@ module.exports = function(sequelize) {
             allowNull: false
         },
         phone: {
-            type: Sequelize.INTEGER(3),
+            type: Sequelize.STRING,
             allowNull: false
         },
         rolse: {
@@ -46,10 +46,10 @@ module.exports = function(sequelize) {
     }, {
         paranoid: true,
         instanceMethods: {
-            authenticate: (password) => {
-                return bcrypt.compareSync(password, this.password);
+            authenticate: function(text) {
+                return bcrypt.compareSync(text, this.password);
             },
-            hashPassword: (password) => {
+            hashPassword: function(password) {
                 var salt = bcrypt.genSaltSync(10);
                 return bcrypt.hashSync(password, salt);
             }
