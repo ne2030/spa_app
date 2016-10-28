@@ -8,13 +8,13 @@ let passport = require('passport'),
 module.exports = () => {
     // Use local strategy
     passport.use(new LocalStrategy({
-        usernameField: 'userId',
+        usernameField: 'userEmail',
         passwordField: 'password'
-    },(userId, password, done) => {
+    },(userEmail, password, done) => {
 
         User.findOne({
             where: {
-                userId: userId
+                email: userEmail
             }
          })
         .then((user) => {

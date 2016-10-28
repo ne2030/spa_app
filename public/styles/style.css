@@ -1,18 +1,5 @@
 /* All Device */
 /* Mobile Device */
-#chat form {
-  margin-left: 15px;
-}
-#chat > form input {
-  width: 50%;
-  display: inline-block;
-}
-#chat > form input:first-child {
-  width: 25%;
-}
-#pagenation {
-  margin-left: 13px;
-}
 html {
   width: 100vw;
 }
@@ -41,6 +28,19 @@ btn:active:focus {
 }
 .main_img img {
   width: 100vw;
+}
+#chat form {
+  margin-left: 15px;
+}
+#chat > form input {
+  width: 50%;
+  display: inline-block;
+}
+#chat > form input:first-child {
+  width: 25%;
+}
+#pagenation {
+  margin-left: 13px;
 }
 .stack {
   margin-top: 10px;
@@ -96,34 +96,33 @@ btn:active:focus {
 .r2_ctn {
   margin-bottom: 10px;
 }
+.login_container {
+  margin-top: 10rem;
+}
+.login_container p {
+  display: block;
+  width: 78.3%;
+  margin: 0 auto 1rem;
+  color: #626262;
+}
+.login_form li:first-child {
+  margin-bottom: 0.5rem;
+}
+.login_form .inputbox {
+  display: block;
+  width: 78.3%;
+  margin: 0 auto;
+}
+.login_btn {
+  margin: 0 auto;
+  display: block;
+  width: 78.3%;
+  font-weight: 300;
+  color: #fff;
+  background: #BDBDBD;
+}
 /* Desktop Device */
 @media all and (min-width: 1025px) {
-  #chat h3 {
-    margin-left: 20px;
-  }
-  #chat form {
-    margin-left: 0;
-  }
-  #chat form input {
-    width: 180px;
-  }
-  #chat form input:first-child {
-    margin-left: 20px;
-    width: 70px;
-  }
-  .firstdata {
-    width: 40px;
-  }
-  #chatbox {
-    width: 350px;
-  }
-  #chatbox th,
-  #chatbox td {
-    text-align: center;
-  }
-  #pagenation {
-    margin-left: 20px;
-  }
   html {
     width: 1280px;
   }
@@ -175,6 +174,32 @@ btn:active:focus {
   }
   .main_img img {
     width: 100%;
+  }
+  #chat h3 {
+    margin-left: 20px;
+  }
+  #chat form {
+    margin-left: 0;
+  }
+  #chat form input {
+    width: 180px;
+  }
+  #chat form input:first-child {
+    margin-left: 20px;
+    width: 70px;
+  }
+  .firstdata {
+    width: 40px;
+  }
+  #chatbox {
+    width: 350px;
+  }
+  #chatbox th,
+  #chatbox td {
+    text-align: center;
+  }
+  #pagenation {
+    margin-left: 20px;
   }
   .profile > a {
     margin-left: 20px;
@@ -241,5 +266,19 @@ btn:active:focus {
   }
   .r2_list li {
     margin-top: 10px;
+  }
+  .login_container {
+    margin-top: 24rem;
+  }
+  .login_container p {
+    width: 30rem;
+  }
+  .login_form .inputbox {
+    width: 30rem;
+    margin: 0 auto;
+    display: block;
+  }
+  .login_btn {
+    width: 30rem;
   }
 }

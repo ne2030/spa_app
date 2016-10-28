@@ -1,7 +1,7 @@
 # spa_app
 
 * Node.js로 구현한 SPA(single page application) project
-* Node.js 4.6.0 stable 을 사용중
+* Node.js 6.9.1 stable 을 사용중
 * 미들웨어 Express 4.14.0 을 사용중.
 * Database 연동 모듈로 mysql 2.11.1 을 사용중.
 * ORM 연동 모듈로 sequelize 3.23.4 을 사용중.

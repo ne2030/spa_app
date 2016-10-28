@@ -35,8 +35,8 @@ module.exports.login = (req, res, next) => {
                 UserId: user.id
             });
 
-            let jwToken = jwt.generateToken({userId: user.userId}, req.hostname, next);
-            res.send({'refreshToken': refreshToken, 'jwToken': jwToken, 'userId': user.userId });
+            let jwToken = jwt.generateToken(user.id, req.hostname, next);
+            res.send({'refreshToken': refreshToken, 'jwToken': jwToken, 'user': user.email });
         }
     } catch (e) { next(e); }
     });
@@ -55,6 +55,7 @@ module.exports.login = (req, res, next) => {
 //     return 'e';
 //
 // };
+
 
 
 function create_refreshToken(){

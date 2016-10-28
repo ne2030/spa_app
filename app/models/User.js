@@ -10,16 +10,12 @@ let Sequelize = require('sequelize'),
 
 module.exports = function(sequelize) {
     let User = sequelize.define('User', {
-        userId: {
-            type: Sequelize.STRING(10),
+        email: {
+            type: Sequelize.STRING(255),
             allowNull: false
         },
         password: {
             type: Sequelize.STRING,
-            allowNull: false
-        },
-        email: {
-            type: Sequelize.STRING(255),
             allowNull: false
         },
         phone: {

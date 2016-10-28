@@ -8,7 +8,7 @@ function core ($scope, endPoint, $location, toastr){
 
     $scope.isLoggedIn = () => {
         let auth = JSON.parse(localStorage.getItem('authentication'));
-        return auth && auth.userId;
+        return auth && auth.user;
     };
 
     $scope.logOut = () => {

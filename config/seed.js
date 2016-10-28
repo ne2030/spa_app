@@ -35,6 +35,6 @@ function profile(db){
 }
 
 function user(db){
-    let _administrator = { userId: 'ne2030', password: 'rudgnstls2', email: 'erguono@naver.com', phone: '01053852384', roles: ['admin', 'user'], age: 22 };
+    let _administrator = {email: 'erguono@naver.com', password: 'rudgnstls2', phone: '01053852384', roles: ['admin', 'user'], age: 22 };
     db.User.create(_administrator);
 }
