@@ -63,7 +63,7 @@ module.exports.deleteChat = function (req, res, next) {
                 id: chatId
             }
         });
-        res.send({});
+        res.end();
     } catch(e){ next(e);}
     });
 };
@@ -88,7 +88,7 @@ co(function*(){
                 name: name,
                 content: content,
             });
-            res.send({});
+            res.end();
         } catch (e) {
             next(e);
         }

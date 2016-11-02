@@ -13,7 +13,7 @@
         'UserController',
         'route'
     ])
-    .constant('endPoint', 'http://localhost:8080')
+    .constant('endPoint', 'http://localhost:8000')
     .config(routeConfig);
 
     function routeConfig($urlRouterProvider) {

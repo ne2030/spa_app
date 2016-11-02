@@ -4,15 +4,15 @@
 let path = require('path'),
     express = require('express'),
     bodyParser = require('body-parser'),
-    // let swig = require('swig'),
+    swig = require('swig'), //eslint-disable-line
     consolidate = require('consolidate'),
     expressValidator = require('express-validator'),
     CORS = require('cors');
 
+    // custom config modules
 let config = require('./config'),
     errorHandler = require('./errorHandler'),
-    jwt = require('jsonwebtoken');
-
+    jwt = require('./jwt');
 
 module.exports = function(){
     let app = express();
@@ -31,8 +31,10 @@ module.exports = function(){
     let whitelist = [
         'http://52.78.133.77',
         'http://localhost',
-        'http://localhost:8080',
-        'http://eleclion.asia'
+        'http://localhost:8000',
+        'http://eleclion.asia',
+
+        'http://localhost:9000'
     ];
     let corsOptions = {
         origin: function(origin, callback) {
@@ -45,39 +47,26 @@ module.exports = function(){
 
     // express static
     app.use(express.static(path.join(__dirname, '../public')));
-    app.use(express.static(path.join(__dirname, '../bower_components')));
     app.use(express.static(path.join(__dirname, '../app')));
     app.use(express.static(path.join(__dirname, '../app/views')));
+    app.use(express.static(path.join(__dirname, '../bower_components')));
 
+    // authentication middleware
     app.use((req, res, next) => {
-        let token = '';
+    try {
+        // headers.authorization ?
+        if (!req.headers || !req.headers.authorization) return next();
 
-        // parse headers if req.headers exitst
-        if (req.headers && req.headers.authorization){
-            let parts = req.headers.authorization.split(' ');
-            if (parts.length == 2) {
-                var scheme = parts[0];
-                var credentials = parts[1];
+        // authorization format ? 'Bearer + Token'
+        if (!/^Bearer/.test(req.headers.authorization)) return next();
+        let token = req.headers.authorization.split(' ')[1];
 
-                if(/^Bearer$/.test(scheme)){
-                    token = credentials;
-                } else {
-                    return next();
-                }
-            } else {
-                return next();
-            }
-
-            // jwt authenticate
-            let user = jwt.authenticateToken(token, next);
-            if (user.error) {
-                return next();
-            } else {
-                req.user = user;
-            }
-        } else {
-            next();
-        }
+        // jwt authenticate
+        let user = jwt.authenticateToken(token, next);
+        if (user.error) return next();
+        req.user = user;
+        next();
+    } catch (e) { next(e); console.log('authenticate error'); } //eslint-disable-line
     });
 
     // express index route

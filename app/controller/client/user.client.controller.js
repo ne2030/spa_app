@@ -19,14 +19,14 @@ function userController($scope, endPoint, $http, $location ,toastr) {
             userEmail: userEmail,
             password: password
         }).then((res) => {
-            // Success function
+            // success
             let auth = JSON.stringify(res.data);
             localStorage.setItem('authentication', auth);
             $location.path('/');
-            toastr.success('Success', '로그인 되었습니다');
-        }, (e) => {
+            toastr.success('로그인 되었습니다','Success' );
+        }, (err) => {
             // Error function
-            toastr.error('error', e);
+            toastr.error(err.data.message, 'Error');
         }
 
         );

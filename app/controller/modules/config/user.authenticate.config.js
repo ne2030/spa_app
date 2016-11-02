@@ -11,32 +11,32 @@ function authInjector($injector, $http, $location, endPoint, toastr) {
     }
     return {
         request: function(config){
-            let authentication = getAuth();
+            let authentication = getAuth() || {};
             if (!config.headers) { config.headers = {}; }
-            config.headers.authorization = `bearer ${authentication}`;
+            config.headers.authorization = `Bearer ${authentication.jwToken}`;
             // set-cookie
 			config.withCredentials = true;
 			return config;
         },
-        responseError: function(rejection){
-            // var $http = $injector.get('$http');
-            switch (rejection.status) {
-                case 401: {
-                    let authentication = getAuth() || {};
-                    if (authentication.refreshToken) {
-                        $http.post(endPoint + '/auth/refresh', {
-                            refreshToken: authentication.refreshToken
-                        }).then(
-                        (token) => { localStorage.setItem('authentication', JSON.stringify(token)); },
-                        (error) => { toastr.error(error.data.message, 'Token Error'); });
-                    } else {
-                        $location.path('/login');
-                    }
-                    break;
-                }
-            }
-            return rejection;
-        }
+        // responseError: function(rejection){
+        //     // var $http = $injector.get('$http');
+        //     switch (rejection.status) {
+        //         case 401: {
+        //             let authentication = getAuth() || {};
+        //             if (authentication.refreshToken) {
+        //                 $http.post(endPoint + '/auth/refresh', {
+        //                     refreshToken: authentication.refreshToken
+        //                 }).then(
+        //                 (token) => { localStorage.setItem('authentication', JSON.stringify(token)); },
+        //                 (error) => { toastr.error(error.data.message, 'Token Error'); });
+        //             } else {
+        //                 location.href = '/#/login';
+        //             }
+        //             break;
+        //         }
+        //     }
+        //     return rejection;
+        // }
     };
 }
 

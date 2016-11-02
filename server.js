@@ -23,4 +23,4 @@ let app = require('./config/express')();
 
 require('./config/passport')();
 
-app.listen(8080, () => console.log('server is running at localhost:8080')); //eslint-disable-line
+app.listen(8000, () => console.log('server is running at localhost:8000')); //eslint-disable-line

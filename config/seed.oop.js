@@ -6,7 +6,7 @@ class seed {
         this.route2(db);
         this.chat(db);
         this.profile(db);}
-    catch (e) { console.log(`error logged in seed file! : ${e}`);}
+    catch (e) { console.log(`error logged in seed file! : ${e}`);} //eslint-disable-line
     }
 
     route2(db){

@@ -14,8 +14,9 @@ try {
         audience: aud
     };
     let token = jwt.sign(user, config.sessionSecret, jwtOptions);
+    console.log(token); // eslint-disable-line
     return token;
-} catch (e) { return next(e); }
+} catch (e) {return next(e); }
 };
 
 module.exports.authenticateToken = (token, aud) => {

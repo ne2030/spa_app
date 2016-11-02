@@ -2,7 +2,7 @@
 
 module.exports = (err, req, res, next) => {
     if (!err) return next();
-    // console.log(err);
+    console.log(err); //eslint-disable-line
 
     let route = req.originalMethod || req.method;
 
@@ -13,5 +13,5 @@ module.exports = (err, req, res, next) => {
         url: req.originalUrl,
         route: route
     });
-    } else return next();
+} else return next();
 };

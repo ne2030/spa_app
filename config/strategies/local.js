@@ -27,6 +27,6 @@ module.exports = () => {
                 return done(null, false, {message: '비밀번호가 틀렸습니다.'});
             }
             return done(null, user);
-        }).catch((err) => { console.log(err); done(err); });
+        }).catch((err) => { console.log(err); done(err); }); //eslint-disable-line
     }));
 };

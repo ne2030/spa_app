@@ -129,7 +129,7 @@ module.exports.changeDeviceGeom = function(req, res, next) {
             uuid: uuid
         }
     }).then(function() {
-        res.send({});
+        res.end();
         // Close Statistics Query
         var userId = req.user ? req.user.id : undefined;
         aws.dynamoDB.createItem(aws.CONST.DYNAMO_DB.TABLE.USER_ROUTE, {
@@ -161,7 +161,7 @@ module.exports.emailVerification = function(req, res, next) {
         paranoid: false
     }).then(function(cnt) {
         if (cnt > 0) next({message: i18n.__('errors.alreadyExistEmail'), statusCode: 409});
-        else res.send({});
+        else res.end();
     }).catch(next);
 };
 
@@ -191,7 +191,7 @@ module.exports.phoneVerification = function(req, res, next) {
         }
     }).then(function(exist) {
         if (exist) {
-            res.send({});
+            res.end();
         } else {
             next(BaseError.getNotFoundErrorInstance(i18n.__('errors.smsVerificationCode')));
         }
@@ -247,7 +247,7 @@ module.exports.sendPhoneVerification = function(req, res, next) {
         }
     ], function(err, verificationCode) {
         if (err) next(err);
-        else res.send({});
+        else res.end();
     });
 };
 
@@ -265,7 +265,7 @@ module.exports.leave = function(req, res, next) {
             id: user.id
         }
     }).then(function() {
-        res.send({});
+        res.end();
     }).catch(next);
 };
 
