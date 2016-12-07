@@ -1,26 +1,29 @@
-const uglify = require('uglify-js-harmony')
+const uglify = require('uglify-js')
     , fs = require('fs')
     , config = require('./config/config')
-    , mkdirp = require('mkdirp');
+    , mkdirp = require('mkdirp')
+    , path = require('path');
 
-const js = [
-  'server.js', 'config/**/*.js', 'app/controller**/*.js', '!app/controller/modules/**/*.js'
+let js = [
+  'server.js', 'config/**/*.js', 'app/**/*.js'
 ];
 
-let result, dir, cache =[];
+js = js.map(e => path.join(__dirname, e));
+
+let result, dir, dest, cache =[];
+
 
 config.getGlobbedFiles(js).map(path => {
   //make directory tree
   dir = path.replace(/\/(\w+\.)+js/, '');
   dir = dir.replace(/spa_app/, 'spa_app/dist');
-  if (cache.indexOf(dir) !== -1) mkdirp(dir, err => err ? console.error(err):''); //eslint-disable-line
+  if (cache.indexOf(dir) !== -1) mkdirp(dir, err => err ? console.error(err):'');
 
   result = uglify.minify(path);
-
-  //out file - destination: /dist , name: ~.min.js
-  path.replace(/spa_app/, 'spa_app/dist');
-  path.replace(/\.js/, '.min.js');
+  // out file - destination: /dist , name: ~.min.js
+  dest = path.replace(/spa_app/, 'spa_app/dist');
+  dest = dest.replace(/\.js/, '.min.js');
   fs.writeFile(path, result, (err) => {
-    console.error(err); //eslint-disable-line
+    console.error(err);
   });
 });

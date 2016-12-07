@@ -1,53 +1,34 @@
 const gulp = require('gulp')
     // , concat = require('gulp-concat')
-    , uglifyjs = require('uglify-js-harmony') //eslint-disable-line
     , eslint = require('gulp-eslint')
     , Cache = require('gulp-file-cache')
-    , minifier = require('gulp-uglify/minifier') //eslint-disable-line
     , babel = require('gulp-babel')
-    , pump = require('pump');
+    , pump = require('pump')
+    , uglify = require('gulp-uglify')
+    , config = require('./config/config')
+    , path = require('path');
 
-const uglify = require('gulp-uglify');
+// const minifier = require('gulp-uglify/minifier')
+//     , uglifyjs = require('uglify-js-harmony');
 
 let cache = new Cache();
 
-const js = {
-  server: 'server.js',
-  config: 'config/**/*.js',
-  api: ['app/controller**/*.js', '!app/controller/modules/**/*.js']
-};
+let js = [ 'server.js', 'config/**/*.js', 'app/**/*.js' ];
+
+js = js.map(e => path.join(__dirname, e));
+
+js = config.getGlobbedFiles(js);
+console.log(js);
 
 // 자바스크립트 압축
-gulp.task('server', ['config'], (cb) => {
+gulp.task('minify', ['lint'], (cb) => {
 	pump([
     gulp.src(js),
     cache.filter(),
     babel({ presets: [ 'es2015' ]}),
     uglify(),
     cache.cache(),
-    gulp.dest('dist/js')
-  ], cb);
-});
-
-gulp.task('config', ['api'], (cb) => {
-	pump([
-    gulp.src(js),
-    cache.filter(),
-    babel({ presets: [ 'es2015' ]}),
-    uglify(),
-    cache.cache(),
-    gulp.dest('dist/js')
-  ], cb);
-});
-
-gulp.task('api', ['lint'], (cb) => {
-	pump([
-    gulp.src(js),
-    cache.filter(),
-    babel({ presets: [ 'es2015' ]}),
-    uglify(),
-    cache.cache(),
-    gulp.dest('dist/js')
+    gulp.dest('dist')
   ], cb);
 });
 
@@ -63,4 +44,4 @@ gulp.task('lint', () => {
 });
 
 //기본 task 설정
-gulp.task('default', ['combine-js']);
+gulp.task('default', ['minify']);

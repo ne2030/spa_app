@@ -3,8 +3,7 @@
 /**
  * Module dependencies.
  */
-let _ = require('lodash'),
-    glob = require('glob');
+let glob = require('glob');
 
 // Detail config exports
 module.exports = Object.assign({},
@@ -14,8 +13,9 @@ module.exports = Object.assign({},
 /**
  * Get files by glob patterns
  */
- module.exports.getGlobbedFiles = (globPatterns, removeRoot) => {
+ module.exports.getGlobbedFiles = getGlobbedFiles;
 
+ function getGlobbedFiles(globPatterns, removeRoot) {
     // URL paths regex
     let urlRegex = new RegExp('^(?:[a-z]+:)?\/\/', 'i');
 
@@ -23,24 +23,22 @@ module.exports = Object.assign({},
 	let output = [];
 
 	// If glob pattern is array so we use each pattern in a recursive way, otherwise we use glob
-	if (_.isArray(globPatterns)) {
+	if (Array.isArray(globPatterns)) {
 		globPatterns.forEach(globPattern => {
-			output = _.union(output, this.getGlobbedFiles(globPattern, removeRoot));
+			output = output.concat(getGlobbedFiles(globPattern, removeRoot));
 		});
-	} else if (_.isString(globPatterns)) {
-
-        if (urlRegex.test(globPatterns)) {
-			output.push(globPatterns);
-		} else {
-            let files = glob(globPatterns, { sync: true });
-            if (removeRoot) {
-                files = files.map(function(file) {
-                    return file.replace(removeRoot, '');
-                });
-            }
-            output = _.union(output, files);
+	} else if(typeof(globPatterns) == 'string') {
+      if (urlRegex.test(globPatterns)) {
+        output.push(globPatterns);
+      } else {
+          let files = glob(globPatterns, { sync: true });
+          if (removeRoot) {
+            files = files.map(function(file) {
+              return file.replace(removeRoot, '');
+            });
+          }
+          output = output.concat(files);
         }
-    }
-
+      }
 	return output;
- };
+ }
