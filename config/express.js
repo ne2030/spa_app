@@ -4,8 +4,7 @@
 let path = require('path'),
     express = require('express'),
     bodyParser = require('body-parser'),
-    swig = require('swig'), //eslint-disable-line
-    consolidate = require('consolidate'),
+    // nunjucks = require('nunjucks'),
     expressValidator = require('express-validator'),
     CORS = require('cors');
 
@@ -18,9 +17,12 @@ module.exports = function(){
     let app = express();
 
     //express engine
-    app.engine('html', consolidate.swig);
-    app.set('view engine', 'html');
-    app.set('views', __dirname + '/../app/views');
+    // app.engine('html', nunjucks.render);
+    // app.set('view engine', 'html');
+    // nunjucks.configure('./../front/views', {
+    //     autoescape: true,
+    //     express: app
+    // });
 
     // express middleware
     app.use(bodyParser.json());
@@ -29,11 +31,13 @@ module.exports = function(){
 
     // Cross Origin Resource Sharing
     let whitelist = [
-        'http://52.78.133.77',
+        'http://52.78.225.119',
         'http://localhost',
         'http://localhost:8000',
         'http://eleclion.asia',
 
+        // for test Front (react)
+        'http://localhost:3000',
         'http://localhost:9000'
     ];
     let corsOptions = {
@@ -48,8 +52,7 @@ module.exports = function(){
     // express static
     app.use(express.static(path.join(__dirname, '../public')));
     app.use(express.static(path.join(__dirname, '../app')));
-    app.use(express.static(path.join(__dirname, '../app/views')));
-    app.use(express.static(path.join(__dirname, '../bower_components')));
+    app.use(express.static(path.join(__dirname, '../front/build')));
 
     // authentication middleware
     app.use((req, res, next) => {
@@ -66,13 +69,13 @@ module.exports = function(){
         if (user.error) return next();
         req.user = user;
         next();
-    } catch (e) { next(e); console.log('authenticate error'); } //eslint-disable-line
+    } catch (e) { next(e);} //eslint-disable-line
     });
 
     // express index route
-    app.get('/', function(req, res) {
-        res.render('index');
-    });
+    // app.get('/', function(req, res) {
+    //     res.render('index');
+    // });
 
     let router = express.Router();
 

@@ -4,6 +4,7 @@
 node_modules
 bower_components
 .idea/workspace.xml
+/views
 
 #logs
 npm-debug.log*
