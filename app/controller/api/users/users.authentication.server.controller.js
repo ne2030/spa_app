@@ -29,7 +29,7 @@ module.exports.login = (req, res, next) => {
 
             RefreshToken.create({
                 refreshToken: refreshToken,
-                expiredAt: Date.now() + 60 * 1000 * 24 * 30,
+                expiredAt: Date.now() + 1000 * 60 * 60 * 24 * 30,
                 UserId: user.id
             }).then(() => {
                 let _user = {id: user.id, email: user.email};

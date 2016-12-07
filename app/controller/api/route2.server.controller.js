@@ -1,6 +1,7 @@
 'use strict';
 
 let db = require('../../../config/sequelize'),
+    co = require('co'),
     Route2 = db.Route2;
 
 /**
@@ -10,13 +11,14 @@ let db = require('../../../config/sequelize'),
 *  @param next
 */
 module.exports.getRoute2 = (req, res, next) => {
-    
+
     Route2.findAndCountAll({
-        attributes: ['name', 'content', 'createdAt'],
+        attributes: ['id', 'name', 'content', 'createdAt'],
         order: 'id desc'
     })
     .then((result) => {
         result = {
+            id: result.id,
             count: result.count,
             items: result.rows
         };
@@ -33,8 +35,8 @@ module.exports.getRoute2 = (req, res, next) => {
 *  @param next
 */
 module.exports.makeItem = function (req, res, next){
-    let name = req.body.newChat.name;
-    let chat = req.body.newChat.chat;
+    let name = req.body.name;
+    let chat = req.body.chat;
 
     Route2.create({
         name: name,
@@ -42,4 +44,24 @@ module.exports.makeItem = function (req, res, next){
     })
     .then((_chat) => { res.send(_chat); })
     .catch(next);
+};
+
+/**
+* DELETE: /api/route2/:itemId
+* @param req
+* @param res
+* @param next
+*/
+module.exports.deleteItem = function (req, res, next) {
+co(function*(){
+try{
+    let itemId = req.params.itemId;
+    yield Route2.destroy({
+        where: {
+            id: itemId
+        }
+    });
+    res.end();
+} catch(e){ next(e);}
+});
 };

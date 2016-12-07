@@ -1,5 +1,7 @@
 'use strict';
 
+let endPoint = 'http://localhost:8000'
+
     angular.module('myapp', [
         'ui.router',
         'ui.bootstrap',
@@ -13,7 +15,7 @@
         'UserController',
         'route'
     ])
-    .constant('endPoint', 'http://localhost:8000')
+    .constant('endPoint', endPoint)
     .config(routeConfig);
 
     function routeConfig($urlRouterProvider) {

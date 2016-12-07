@@ -12,7 +12,7 @@ let db = require('../../../config/sequelize'),
 module.exports.getStack = (req, res, next) => {
 
     Profile.findAndCountAll({
-        attributes: ['skill', 'type', 'description', 'mastery']
+        attributes: ['id', 'skill', 'type', 'description', 'mastery']
     })
     .then((result) => res.send(result.rows))
     .catch((err) => next(err));

@@ -93,9 +93,7 @@ co(function*(){
             next(e);
         }
     } else {
-        // console.log(errors);
         res.send(errors[0]);
     }
 });
-
 };
