@@ -1,28 +1,40 @@
 'use strict';
 
 // custom js module
-let app = require('./config/express')();
+const webpack = require('webpack')
+    , webpackDevServer =  require('webpack-dev-server');
+
+const app = require('./config/express')();
 
 const port = 80;
-const devPort = 8000;
+const devPort = 3002;
 
 require('./config/passport')();
 
 /**
  *   Sequelize setting
  */
-let createSeed = function(){ //eslint-disable-line
-  let sequelize = require('./config/sequelize'); //eslint-disable-line
-  sequelize.sequelize.sync({
-    force: true
-  }).then(function () {
-    require('./config/seed.js')(sequelize);
-  });
-};
+// let createSeed = function(){
+//   let sequelize = require('./config/sequelize');
+//   sequelize.sequelize.sync({
+//     force: true
+//   }).then(function () {
+//     require('./config/seed.js')(sequelize);
+//   });
+// };
+
+
+if(process.env.NODE_ENV == 'development') {
+  console.log('Server is running on development');
 
 // createSeed();
 
-process.env.NODE_ENV == 'development' ?
-  app.listen(devPort, () => console.log('server is running at localhost:8000')) // eslint-disable-line
-  :
-  app.listen(port, () => console.log('production server is running')); //eslint-disable-line
+  const config = require('./webpack.dev.config');
+  let compiler = webpack(config);
+  let devServer = new webpackDevServer(compiler, config.devServer);
+  devServer.listen(devPort, () => {
+    console.log('webpack-dev-server is listening on port', devPort);
+  });
+}
+
+app.listen(port, () => console.log('production server is running on port' + port));

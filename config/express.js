@@ -9,8 +9,7 @@ let path = require('path'),
     CORS = require('cors');
 
     // custom config modules
-let config = require('./config'),
-    errorHandler = require('./errorHandler'),
+let errorHandler = require('./errorHandler'),
     jwt = require('./jwt');
 
 module.exports = function(){
@@ -69,7 +68,7 @@ module.exports = function(){
         if (user.error) return next();
         req.user = user;
         next();
-    } catch (e) { next(e);} //eslint-disable-line
+    } catch (e) { next(e);}
     });
 
     // express index route
@@ -80,11 +79,25 @@ module.exports = function(){
     let router = express.Router();
 
     // Globbing route files
-    config.getGlobbedFiles(path.join(__dirname, '../app/routes/*.js')).forEach((routePath) => {
-        let _router = require(routePath)(router);
-        console.log(routePath); //eslint-disable-line
-        app.use(_router);
-    });
+    // webpack 컴파일 문제로 안씀
+    /* let pathth = path.join(__dirname, '../app/routes/*.js');
+       let files = config.getGlobbedFiles(pathth);
+       files.forEach((routePath) => {
+         let _router = require(routePath)(router);
+         console.log(routePath);
+         app.use(_router);
+       });
+    */
+
+    let chat = require('../app/routes/chat.route.js')(router);
+    let list = require('../app/routes/list.route.js')(router);
+    let profile = require('../app/routes/profile.route.js')(router);
+    let users = require('../app/routes/users.route.js')(router);
+    const routes = { chat, list, profile, users};
+
+    for(let route in routes) {
+      app.use(routes[route]);
+    }
 
     app.use(errorHandler);
 

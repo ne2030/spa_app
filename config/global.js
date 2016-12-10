@@ -7,3 +7,5 @@ global.isProduction = () => {
 global.isDevelopment = () => {
     return process.env.NODE_ENV === 'development';
 };
+
+global._root = '/Users/gyeonghun/Documents/projects/spa_app';

@@ -3,10 +3,8 @@
 let Sequelize = require('sequelize'),
     path = require('path'),
     fs = require('fs'),
-    config = require('./config.js'),
     db = {};
 
-// let config = require('./config');
 
 let sequelize = new Sequelize(
     'spaApp',
@@ -17,8 +15,7 @@ let sequelize = new Sequelize(
         port: 3306
     });
 
-let rootPath = path.normalize(__dirname + '/..');
-let modelsDir = rootPath + '/app/models';
+var modelsDir = '/Users/gyeonghun/Documents/projects/spa_app/app/models';
 
 // loop through all files in models directory ignoring hidden files and this file
 fs.readdirSync(modelsDir)
@@ -26,20 +23,25 @@ fs.readdirSync(modelsDir)
 
 	// import model files and save model names
 	.forEach(file => {
-		console.log('Loading model file ' + file); //eslint-disable-line
+		console.log('Loading model file ' + file);
 		let model = sequelize.import(path.join(modelsDir, file));
 		db[model.name] = model;
 	});
 
 sequelize
     .authenticate()
-    .then(() => console.log('Connection has been established successfully.'), // eslint-disable-line
-     (err) => console.log('Unable to connect to the database:', err)); //eslint-disable-line
+    .then(() => console.log('Connection has been established successfully.'),
+     (err) => console.log('Unable to connect to the database:', err));
 
-// Globbing model files
-config.getGlobbedFiles('../app/models/*.js').forEach((modelPath) => {
-    require(path.resolve(modelPath))(sequelize);
-});
+//require model files
+require('../app/models/Chat.js');
+require('../app/models/Profile.js');
+require('../app/models/RefreshToken.js');
+require('../app/models/Route2.js');
+require('../app/models/User.js');
+
+
+
 
 for (let key in db) {
     if (db[key].options.associate)
