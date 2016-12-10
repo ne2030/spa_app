@@ -15,7 +15,8 @@ let sequelize = new Sequelize(
         port: 3306
     });
 
-var modelsDir = '/Users/gyeonghun/Documents/projects/spa_app/app/models';
+const rootPath = require('./env/path').root;
+var modelsDir = rootPath + 'app/models';
 
 // loop through all files in models directory ignoring hidden files and this file
 fs.readdirSync(modelsDir)

@@ -6,6 +6,8 @@ module.exports = {
   // ignore built-in module to be bundled and node_modules
   target: 'node',
   externals: [nodeExternals()],
+  context: __dirname,
+  node: { __dirname: false },
 
   entry: "./server.js",
 
