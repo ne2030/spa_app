@@ -17,6 +17,11 @@ module.exports = {
     filename: "app.[hash].bundle.js",
   },
 
+  // output: {
+  //   path: "./dist",
+  //   filename: "app.js"
+  // },
+
   devtool: 'source-map',
 
   plugins: [

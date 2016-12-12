@@ -11,18 +11,18 @@ let sequelize = new Sequelize(
     'root',
     '', {
         host: '127.0.0.1',
-        dialect: 'mysql',
-        port: 3306
-    });
+dialect: 'mysql',
+	port: 3306
+});
 
 const rootPath = require('./env/path').root;
-var modelsDir = rootPath + 'app/models';
+var modelsDir = rootPath + '/app/models';
 
 // loop through all files in models directory ignoring hidden files and this file
 fs.readdirSync(modelsDir)
-	// .filter(file => (file.indexOf('.') !== -1))
+// .filter(file => (file.indexOf('.') !== -1))
 
-	// import model files and save model names
+// import model files and save model names
 	.forEach(file => {
 		console.log('Loading model file ' + file);
 		let model = sequelize.import(path.join(modelsDir, file));

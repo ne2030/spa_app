@@ -46,7 +46,8 @@
   "scripts": {
     "test": "NODE_ENV=development node server.js",
     "start": "NODE_ENV=production node server.js",
-    "forever": "forever start server.js"
+    "forever": "forever start server.js",
+    "remove": "rm -r dist && mkdir dist"
   },
   "repository": {
     "type": "git",

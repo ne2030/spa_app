@@ -3,7 +3,7 @@
 let passport = require('passport'),
     bcrypt = require('bcrypt'),
     jwt = require('../../../../config/jwt'),
-    config = require('../../../../config/config'),
+    config = require('../../../../config/env/all'),
     db = require('../../../../config/sequelize'),
     RefreshToken = db.RefreshToken;
 
