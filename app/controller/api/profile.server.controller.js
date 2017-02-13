@@ -1,7 +1,8 @@
 'use strict';
 
-let db = require('../../../config/sequelize'),
-    Profile = db.Profile;
+let co = require('co')
+    , db = require('../../../config/sequelize')
+    , Profile = db.Profile;
 
 /**
  *  GET: /api/stack
@@ -20,9 +21,10 @@ module.exports.getStack = (req, res, next) => {
 
 /**
  *  POST: /api/stack
- *  @param req
- *  @param res
- *  @param next
+ *  @param skill
+ *  @param body
+ *  @param description
+ *  @param mastery
  */
  module.exports.createStack = (req, res, next) => {
 
@@ -52,3 +54,22 @@ module.exports.getStack = (req, res, next) => {
      .then((result) => res.send(result))
      .catch((err) => next(err));
  };
+
+/**
+*  GET: /api/stack/:id
+*  @param req
+*  @param res
+*  @param next
+*/
+module.exports.deleteStack = (req, res, next) => {
+co(function*() {
+try {
+    yield Profile.destroy({
+        where: {
+            id: req.params.id
+        }
+    });
+    res.end();
+} catch (e) { next(e); }
+});
+};

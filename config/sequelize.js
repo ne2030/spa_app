@@ -35,11 +35,11 @@ sequelize
      (err) => console.log('Unable to connect to the database:', err));
 
 //require model files
-require('../app/models/Chat.js');
-require('../app/models/Profile.js');
-require('../app/models/RefreshToken.js');
-require('../app/models/Route2.js');
-require('../app/models/User.js');
+// require('../app/models/Chat.js')(sequelize);
+// require('../app/models/Profile.js')(sequelize);
+// require('../app/models/RefreshToken.js')(sequelize);
+// require('../app/models/Route2.js')(sequelize);
+// require('../app/models/User.js')(sequelize);
 
 
 

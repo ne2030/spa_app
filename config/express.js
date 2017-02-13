@@ -89,11 +89,11 @@ module.exports = function(){
     let list = require('../app/routes/list.route.js')(router);
     let profile = require('../app/routes/profile.route.js')(router);
     let users = require('../app/routes/users.route.js')(router);
-    const routes = { chat, list, profile, users};
+    const routes = [ chat, list, profile, users];
 
-    for(let route in routes) {
-      app.use(routes[route]);
-    }
+    routes.forEach(route => {
+        app.use(route);
+    });
 
     app.use(errorHandler);
 
