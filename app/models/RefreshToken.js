@@ -5,15 +5,17 @@
  * 유저 Refresh Token
  */
 
-module.exports = function(sequelize, DataTypes) {
+ let Sequelize = require('sequelize');
+
+module.exports = function(sequelize) {
     var RefreshToken = sequelize.define('RefreshToken', {
             refreshToken: {
-                type: DataTypes.STRING,
+                type: Sequelize.STRING,
                 allowNull: false,
                 unique: true
             },
             expiredAt: {
-                type: DataTypes.DATE,
+                type: Sequelize.DATE,
                 allowNull: false
             }
         },

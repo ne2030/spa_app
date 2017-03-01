@@ -20,9 +20,8 @@ var modelsDir = rootPath + '/app/models';
 
 // loop through all files in models directory ignoring hidden files and this file
 fs.readdirSync(modelsDir)
-// .filter(file => (file.indexOf('.') !== -1))
-
-// import model files and save model names
+    // .filter(file => (file.indexOf('.') !== -1))
+    // import model files and save model names
 	.forEach(file => {
 		console.log('Loading model file ' + file);
 		let model = sequelize.import(path.join(modelsDir, file));
@@ -40,9 +39,6 @@ sequelize
 // require('../app/models/RefreshToken.js')(sequelize);
 // require('../app/models/Route2.js')(sequelize);
 // require('../app/models/User.js')(sequelize);
-
-
-
 
 for (let key in db) {
     if (db[key].options.associate)
