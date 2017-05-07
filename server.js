@@ -5,8 +5,8 @@ const http = require('http'),
     fs = require('fs');
 
 // custom js module
-const webpack = require('webpack')
-    , webpackDevServer =  require('webpack-dev-server');
+// const webpack = require('webpack')
+    // , webpackDevServer =  require('webpack-dev-server');
 
 const app = require('./config/express')();
 // const sequelize = require('./config/sequelize');
@@ -37,14 +37,14 @@ const options = {
 
 if(process.env.NODE_ENV == 'development') {
   console.log('Server is running on development');
-
-  const config = require('./webpack.dev.config');
-  let compiler = webpack(config);
-  let devServer = new webpackDevServer(compiler, config.devServer);
-  devServer.listen(devPort, () => {
-    console.log('webpack-dev-server is listening on port', devPort);
-  });
+  app.listen(devPort, () => console.log(`development server is running on port ${devPort}`));
+  // const config = require('./webpack.dev.config');
+  // let compiler = webpack(config);
+  // let devServer = new webpackDevServer(compiler, config.devServer);
+  // devServer.listen(devPort, () => {
+    // console.log('webpack-dev-server is listening on port', devPort);
+  // });
 } else {
-    http.createServer(app).listen(port, () => console.log('production server is running on port' + port));
+    http.createServer(app).listen(port, () => console.log(`production server is running on port ${port}`));
     https.createServer(options, app).listen(securePort, () => console.log('https server is also running on port 443'));
 }
