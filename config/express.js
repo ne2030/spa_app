@@ -33,7 +33,7 @@ module.exports = function(){
         'http://52.78.225.119',
         'http://localhost',
         'http://localhost:8000',
-        'http://eleclion.org',
+        'https://eleclion.org',
     ];
     let corsOptions = {
         origin: function(origin, callback) {
