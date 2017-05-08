@@ -1,7 +1,4 @@
 language: node_js
 node_js:
     - "node"
-before_install:
-    - sudo yum install gcc
-    - sudo yum install gcc-c++
     
